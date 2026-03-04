@@ -40,6 +40,6 @@ dependencyResolutionManagement {
 }
 
 // TODO Change root project name.
-rootProject.name = "android-project"
+rootProject.name = "fossil-sweeper"
 
 include(":app")

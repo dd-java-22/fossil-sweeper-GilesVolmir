@@ -14,23 +14,45 @@ order: 0
 
 ## Summary
 
-[//]: # (TODO Replace this paragraph with one or more paragraphs summarizing the purpose and operation of the Android app you propose to develop in this project.)
+Fossil themed minesweeper with a card collecting element and a small window into real academic paleontology. Instead of avoiding mines, you avoid fossils so as not to break them. Every fossil you successfully uncover displays an image and info block from a real academic database. All uncovered fossils are viewable in a gallery and counted up as lifetime score.
 
 ## Intended users and user stories
 
-[//]: # (TODO Write a bullet list here, including at least 2 different types of intended users. Along with each type of intended user, include at least 1 _user story_. A user story is usually just 1 simple sentence &#40;no more than 2 sentences&#41;, in the voice of the intended user, stating a specific task that the user performs using the app, and the benefit that will be obtained. See rubric for required form.)
++ Casual Fossil Lover
+  As someone interested in archaology and ancient creatures, I like discovering new fossils by uncovering them in Fossil Sweeper.
+
++ Puzzle Game Enthusiast
+  As a puzzle pro, I appreciate Fossil Sweeper's tile reveal item to perfect win sweeper games that would otherwise come down to luck.
+
++ Timekilling Puzzler
+  Since I'm just learning puzzles, I like that making a mistake doesn't end the whole game and lets me keep playing and get the other fossils.
+
++ Archaology Educator
+  As a science teacher, I introduce this game to my students to get them familiar with real-world archaeology data.
+
 
 ## Functionality
 
-[//]: # (TODO List &#40;using a bullet list---or ordered list, if order is relevant&#41; the key functional aspects that will be provided by the app---i.e., tell us what the user will be able to do using the app. This should not simply be a re-statement of the [summary]&#40;#summary&#41;, but should instead provide a more specific articulation of the functionality and user experience. )
+General rules of Fossil Sweeper are the same as Minesweeper.  Tapping a tile digs it out, revealing either nothing, the number of nearby fossils, or a broken fossil (oh no!).  Selecting the fence tool makes tapping protect the tile so you don't accidentally excavate it. Selecting the brush tool extracts the tile carefully, so if it contains a fossil, you acquire it.  There are only as many brushes as fossils, so wasting any will result in the player not acquiring all the fossils on the board. The game ends when you use your last brush. A "travel" tool allows panning and zooming only.
+The board fills the screen, except for a control bar along the top. The board can be zoomed to make the buttons big enough to hit on large boards.
+Every time you successfully excavate a fossil, you are shown a fossil card from a scientific database with a photo and infoblock, and that card is stored permanently in a gallery accessible from the app.
+
 
 ## Persistent data
 
-[//]: # (TODO Using a bullet list, list what content will be maintained in server-side storage. This should include any information that users of your app would expect to be maintained &#40;i.e., without connection to a server&#41; across multiple sessions of use.)
++ Fossils acquired -- including potential fossils to fill in info once available.
++ Prefetched fossils to be acquired later
++ In-progress game
++ inventory of long-term power ups
+
 
 ## Device/external services
 
-[//]: # (TODO If the client component will need to access special services of the client device &#40;e.g., sensors, contacts, messaging&#41;, list them here using a bullet list. Also, if the client component will need to access already-existing external services &#40;e.g., real-time weather data, Open Movie Database, Open Trivia Database&#41;, those should also be listed here.)
++ Fossil image database with species information
+    + Periodic access to this database will be required to enjoy the fossil discovery feature of this game, but it will queue up fossils uncovered when offline, and automatically "acquire" them next time it has network access to query the database and download the image links.
+    + GBIF (Global Biodiversity Information Facility) and iDigBio (Integrated Digitized Biocollections) are appropriate scientific databases, which were suggested by Gemini.
+    + Both options have publicly available APIs with data columns for restricting queries to fossil based entries with images available.
+
 
 ## Stretch goals and possible enhancements 
 

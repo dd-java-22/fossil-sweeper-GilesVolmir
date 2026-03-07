@@ -49,10 +49,16 @@ Every time you successfully excavate a fossil, you are shown a fossil card from 
 ## Device/external services
 
 + Fossil image database with species information
-    + Periodic access to this database will be required to enjoy the fossil discovery feature of this game, but it will queue up fossils uncovered when offline, and automatically "acquire" them next time it has network access to query the database and download the image links.
-    + GBIF (Global Biodiversity Information Facility) and iDigBio (Integrated Digitized Biocollections) are appropriate scientific databases, which were suggested by Gemini.
-    + Both options have publicly available APIs with data columns for restricting queries to fossil based entries with images available.
-
+    + Periodic access to this database will be required to enjoy the fossil discovery feature of 
+      this game, but it will queue up fossils uncovered when offline, and automatically 
+      "acquire" them next time it has network access to query the database and download the 
+      image links. The game will be fully playable without access, but all acquired fossils will 
+      be blank until it's able to use the database to fill them in.
+    + GBIF (Global Biodiversity Information Facility)
+      + [GBIF API reference](https://techdocs.gbif.org/en/openapi/)
+    + iDigBio (Integrated Digitized Biocollections) 
+      + [iDigBio APIs homepage](https://www.idigbio.org/wiki/index.php/IDigBio_API)
+      + [iDigBio Search API](https://github.com/idigbio/idigbio-search-api/wiki)
 
 ## Stretch goals and possible enhancements 
 

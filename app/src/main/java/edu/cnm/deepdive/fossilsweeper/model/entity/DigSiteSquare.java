@@ -21,6 +21,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import edu.cnm.deepdive.fossilsweeper.model.type.SquareState;
 import java.time.Instant;
 
 /**

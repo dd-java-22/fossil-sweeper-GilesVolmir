@@ -53,7 +53,7 @@ public class CollectedFossil {
 
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "collected_fossil_id")
-  private long collectedFossilId;
+  private long id;
 
   @Nullable
   @ColumnInfo(name = "fossil_stats_id")
@@ -75,17 +75,17 @@ public class CollectedFossil {
    *
    * @return Collected fossil ID.
    */
-  public long getCollectedFossilId() {
-    return collectedFossilId;
+  public long getId() {
+    return id;
   }
 
   /**
    * Sets the primary key identifier for this collected fossil.
    *
-   * @param collectedFossilId Collected fossil ID.
+   * @param id Collected fossil ID.
    */
-  public void setCollectedFossilId(long collectedFossilId) {
-    this.collectedFossilId = collectedFossilId;
+  public void setId(long id) {
+    this.id = id;
   }
 
   /**

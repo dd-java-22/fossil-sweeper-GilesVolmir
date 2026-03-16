@@ -37,7 +37,7 @@ public class Fossil {
 
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "fossil_id")
-  private long fossilId;
+  private long id;
 
   @NonNull
   @ColumnInfo(name = "image_uri")
@@ -60,17 +60,17 @@ public class Fossil {
    *
    * @return Fossil ID.
    */
-  public long getFossilId() {
-    return fossilId;
+  public long getId() {
+    return id;
   }
 
   /**
    * Sets the primary key identifier for this fossil.
    *
-   * @param fossilId Fossil ID.
+   * @param id Fossil ID.
    */
-  public void setFossilId(long fossilId) {
-    this.fossilId = fossilId;
+  public void setId(long id) {
+    this.id = id;
   }
 
   /**

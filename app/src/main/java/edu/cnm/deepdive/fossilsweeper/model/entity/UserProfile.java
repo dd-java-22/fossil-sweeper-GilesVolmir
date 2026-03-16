@@ -30,7 +30,7 @@ public class UserProfile {
 
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "user_id")
-  private long userId;
+  private long id;
 
   @ColumnInfo(name = "scanner_items")
   private int scannerItems;
@@ -40,17 +40,17 @@ public class UserProfile {
    *
    * @return User ID.
    */
-  public long getUserId() {
-    return userId;
+  public long getId() {
+    return id;
   }
 
   /**
    * Sets the primary key identifier for this user profile.
    *
-   * @param userId User ID.
+   * @param id User ID.
    */
-  public void setUserId(long userId) {
-    this.userId = userId;
+  public void setId(long id) {
+    this.id = id;
   }
 
   /**

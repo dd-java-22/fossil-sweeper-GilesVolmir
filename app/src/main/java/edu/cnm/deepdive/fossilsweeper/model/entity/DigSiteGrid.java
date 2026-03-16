@@ -44,8 +44,8 @@ import java.time.Instant;
 public class DigSiteGrid {
 
   @PrimaryKey(autoGenerate = true)
-  @ColumnInfo(name = "grid_id")
-  private long gridId;
+  @ColumnInfo(name = "dig_site_grid_id")
+  private long id;
 
   @ColumnInfo(name = "player_id")
   private long playerId;
@@ -65,17 +65,17 @@ public class DigSiteGrid {
    *
    * @return Grid ID.
    */
-  public long getGridId() {
-    return gridId;
+  public long getId() {
+    return id;
   }
 
   /**
    * Sets the primary key identifier for this dig site grid.
    *
-   * @param gridId Grid ID.
+   * @param id Grid ID.
    */
-  public void setGridId(long gridId) {
-    this.gridId = gridId;
+  public void setId(long id) {
+    this.id = id;
   }
 
   /**

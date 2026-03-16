@@ -36,7 +36,7 @@ import java.time.Instant;
     foreignKeys = {
         @ForeignKey(
             entity = DigSiteGrid.class,
-            parentColumns = "grid_id",
+            parentColumns = "dig_site_grid_id",
             childColumns = "belonging_grid_id",
             onDelete = ForeignKey.CASCADE
         )
@@ -45,8 +45,8 @@ import java.time.Instant;
 public class DigSiteSquare {
 
   @PrimaryKey(autoGenerate = true)
-  @ColumnInfo(name = "square_id")
-  private long squareId;
+  @ColumnInfo(name = "dig_site_square_id")
+  private long id;
 
   @ColumnInfo(name = "belonging_grid_id")
   private long belongingGridId;
@@ -77,17 +77,17 @@ public class DigSiteSquare {
    *
    * @return Square ID.
    */
-  public long getSquareId() {
-    return squareId;
+  public long getId() {
+    return id;
   }
 
   /**
    * Sets the primary key identifier for this square.
    *
-   * @param squareId Square ID.
+   * @param id Square ID.
    */
-  public void setSquareId(long squareId) {
-    this.squareId = squareId;
+  public void setId(long id) {
+    this.id = id;
   }
 
   /**

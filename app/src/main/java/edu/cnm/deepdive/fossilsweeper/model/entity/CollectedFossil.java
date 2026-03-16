@@ -43,7 +43,7 @@ import java.time.Instant;
         ),
         @ForeignKey(
             entity = UserProfile.class,
-            parentColumns = "user_id",
+            parentColumns = "user_profile_id",
             childColumns = "collecting_user",
             onDelete = ForeignKey.CASCADE
         )

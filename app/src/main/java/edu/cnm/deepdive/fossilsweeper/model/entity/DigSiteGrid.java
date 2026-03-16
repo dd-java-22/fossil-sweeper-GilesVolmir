@@ -35,7 +35,7 @@ import java.time.Instant;
     foreignKeys = {
         @ForeignKey(
             entity = UserProfile.class,
-            parentColumns = "user_id",
+            parentColumns = "user_profile_id",
             childColumns = "player_id",
             onDelete = ForeignKey.CASCADE
         )

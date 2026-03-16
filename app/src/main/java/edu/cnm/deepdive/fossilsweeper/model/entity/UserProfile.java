@@ -29,7 +29,7 @@ import androidx.room.PrimaryKey;
 public class UserProfile {
 
   @PrimaryKey(autoGenerate = true)
-  @ColumnInfo(name = "user_id")
+  @ColumnInfo(name = "user_profile_id")
   private long id;
 
   @ColumnInfo(name = "scanner_items")

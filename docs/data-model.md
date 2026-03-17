@@ -21,4 +21,13 @@ order: 10
 [![Entity-Relationship Diagram](img/erd.svg)](pdf/erd.pdf)
 
 ### Entity Classes
-...in progress...
+[Fossil](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/Fossil.java)
+
+[CollectedFossil](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/CollectedFossil.java)
+
+[UserProfile](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/UserProfile.java)
+
+[DigSiteGrid](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/DigSiteGrid.java)
+
+[DigSiteSquare](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/DigSiteSquare.java)
+

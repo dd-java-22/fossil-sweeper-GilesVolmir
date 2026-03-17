@@ -60,6 +60,9 @@ public interface DigSiteSquareDao {
   @Query("SELECT * FROM dig_site_square WHERE dig_site_square_id = :id")
   DigSiteSquare selectById(long id);
 
+  // TODO: 3/16/2026 query moore neighborhood...? or is that a service ting?
+  //  or just a query by x range, y range, and digsite? and zero neighbors field?
+
   /**
    * Updates a single dig site square, typically used when a player interacts with a square on the
    * board.
@@ -72,7 +75,7 @@ public interface DigSiteSquareDao {
 
   /**
    * Updates multiple dig site squares in a batch operation.
-   *
+   * Useful for cascading reveals.
    * @param digSiteSquares Collection of squares to update.
    * @return Number of rows updated.
    */

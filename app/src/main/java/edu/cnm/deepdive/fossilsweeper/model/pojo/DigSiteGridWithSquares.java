@@ -9,7 +9,7 @@ import edu.cnm.deepdive.fossilsweeper.model.type.SquareState;
             SELECT
             """
 )
-public class DigSiteGridWithSquare {
+public class DigSiteGridWithSquares {
   @ColumnInfo(name = "player_id")
   private long playerId;
 

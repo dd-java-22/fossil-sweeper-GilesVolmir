@@ -47,6 +47,7 @@ public interface UserProfileDao {
    */
   @Query("SELECT * FROM user_profile ORDER BY user_profile_id")
   LiveData<List<UserProfile>> selectAll();
+  // TODO: 3/16/2026 review claude's decisions. is this useful? er,,, maybe if I have a pulldown of users? I'm not even sure I want more than 1....
 
   /**
    * Retrieves a single user profile by its primary key as observable live data.
@@ -56,6 +57,7 @@ public interface UserProfileDao {
    */
   @Query("SELECT * FROM user_profile WHERE user_profile_id = :id")
   LiveData<UserProfile> selectById(long id);
+  // TODO: 3/16/2026 review claude's decisions. Is this what I need for displaying the number of scanners in a UI? yeah, probably.
 
   /**
    * Updates an existing user profile, typically used for scanner item inventory changes.
@@ -65,6 +67,7 @@ public interface UserProfileDao {
    */
   @Update
   int update(UserProfile userProfile);
+  // Could/Should I make increment/decrement methods for scanner items? by user?
 
   /**
    * Deletes a user profile from the database.

@@ -10,9 +10,10 @@ import androidx.room.Update;
 import edu.cnm.deepdive.fossilsweeper.model.entity.CollectedFossil;
 import edu.cnm.deepdive.fossilsweeper.model.pojo.CollectedFossilWithStats;
 import java.util.Collection;
+import java.util.List;
 
 @Dao
-interface CollectedFossilDao {
+public interface CollectedFossilDao {
 
   @Insert
   long insert(CollectedFossil collectedFossil);
@@ -24,13 +25,13 @@ interface CollectedFossilDao {
   long updateRange(Collection<CollectedFossil> collectedFossils);
 
   @Query("SELECT * FROM collected_fossil WHERE collected_fossil_id = :id")
-  CollectedFossil getCollectedFossilById(long id);
+  List<CollectedFossil> getCollectedFossilById(long id);
 
   @Query("SELECT * FROM collected_fossil WHERE collecting_user = :userId")
-  CollectedFossil getAllCollectedFossilsForUser(long userId);
+  List<CollectedFossil> getAllCollectedFossilsForUser(long userId);
 
   @Query("SELECT * FROM collected_fossil WHERE collecting_user = :userId AND is_favorite = :isFavorite")
-  CollectedFossil getCollectedFossilsByUserAndFavorite(long userId, boolean isFavorite);
+  List<CollectedFossil> getCollectedFossilsByUserAndFavorite(long userId, boolean isFavorite);
 
   @Query("SELECT COUNT(*) FROM collected_fossil WHERE collecting_user = :userId")
   int getCollectedFossilCountByUser(long userId);

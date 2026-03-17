@@ -56,6 +56,9 @@ public class DigSiteGrid {
   @ColumnInfo(name = "width")
   private int width;
 
+  // TODO: 3/16/2026 Forgotten required fields: total fossils (immutable) and remaining brushes (mutable) 
+  // TODO: 3/16/2026 Bubble above to DAO, ERD, UML diagram. 
+
   @NonNull
   @ColumnInfo(name = "start_time")
   private Instant startTime;

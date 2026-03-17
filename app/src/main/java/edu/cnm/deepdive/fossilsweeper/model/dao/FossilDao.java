@@ -35,7 +35,7 @@ public interface FossilDao {
    * Inserts a batch of fossils into the database, typically from a webservice call.
    *
    * @param fossils Collection of fossils to insert.
-   * @return Array of generated primary key IDs.
+   * @return List of generated primary key IDs.
    */
   @Insert
   List<Long> insert(Collection<Fossil> fossils);
@@ -47,6 +47,7 @@ public interface FossilDao {
    */
   @Query("SELECT * FROM fossil ORDER BY latin_name")
   LiveData<List<Fossil>> selectAll();
+  // TODO: 3/16/2026 Review Claude AI's choices: is this needed? probably just wrap in collected_fossil.
 
   /**
    * Retrieves a single fossil by its primary key.
@@ -64,6 +65,7 @@ public interface FossilDao {
    */
   @Query("SELECT * FROM fossil ORDER BY RANDOM() LIMIT 1")
   Fossil selectRandom();
+  // TODO: 3/16/2026 Claude AI's function: awarding a fossil should get the next (or a random) unassigned fossil instead.
 
   /**
    * Deletes a fossil from the database.
@@ -73,5 +75,6 @@ public interface FossilDao {
    */
   @Delete
   int delete(Fossil fossil);
+  // TODO: 3/16/2026 review...do I even need this? should it be by ID instead?
 
 }

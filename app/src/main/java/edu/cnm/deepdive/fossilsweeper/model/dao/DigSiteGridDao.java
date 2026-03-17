@@ -22,7 +22,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteGrid;
-import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteGridWithSquare;
+import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteGridWithSquares;
 import java.util.List;
 
 /**
@@ -67,8 +67,8 @@ public interface DigSiteGridDao {
    * @return LiveData containing the grid with squares POJO.
    */
   @Transaction
-  @Query("SELECT * FROM DigSiteGridWithSquare WHERE dig_site_grid_id = :id")
-  LiveData<DigSiteGridWithSquare> selectWithSquares(long id);
+  @Query("SELECT * FROM DigSiteGridWithSquares WHERE dig_site_grid_id = :id")
+  LiveData<DigSiteGridWithSquares> selectWithSquares(long id);
 
   /**
    * Deletes a dig site grid from the database. Associated squares will be cascade deleted.

@@ -35,4 +35,4 @@ order: 10
 [FossilSweeperDatabase](./../app/src/main/java/edu/cnm/deepdive/fossilsweeper/service/FossilSweeperDatabase.java)
 
 ### DDL
-{% include linked-file.md type="sqlite" file="./sql/ddl.sql" %}
+{% include linked-file.md type="sqlite" file="sql/ddl.sql" %}

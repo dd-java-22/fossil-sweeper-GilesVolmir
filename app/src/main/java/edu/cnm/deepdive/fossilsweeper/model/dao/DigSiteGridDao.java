@@ -70,6 +70,16 @@ public interface DigSiteGridDao {
 //  LiveData<DigSiteGridWithSquares> selectWithSquares(long id);
 
   /**
+   * Updates the remaining brushes count for a specific dig site grid.
+   *
+   * @param id Grid ID.
+   * @param remainingBrushes New remaining brushes count.
+   * @return Number of rows updated (should be 1).
+   */
+  @Query("UPDATE dig_site_grid SET remaining_brushes = :remainingBrushes WHERE dig_site_grid_id = :id")
+  int updateRemainingBrushes(long id, int remainingBrushes);
+
+  /**
    * Deletes a dig site grid from the database. Associated squares will be cascade deleted.
    *
    * @param digSiteGrid Dig site grid to delete.

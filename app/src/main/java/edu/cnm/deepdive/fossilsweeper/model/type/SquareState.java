@@ -28,7 +28,7 @@ public enum SquareState {
   /** Square is in the default state. */
   UNTOUCHED(10),
 
-  /** Square is marked with a fence/flag. */
+  /** Square is marked with a fence. */
   FENCED(20),
 
   /** Square has been (destructively) dug up. */

@@ -31,3 +31,6 @@ order: 10
 
 [DigSiteSquare](./../app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/DigSiteSquare.java)
 
+### Database Class
+[FossilSweeperDatabase](./../app/src/main/java/edu/cnm/deepdive/fossilsweeper/service/FossilSweeperDatabase.java)
+

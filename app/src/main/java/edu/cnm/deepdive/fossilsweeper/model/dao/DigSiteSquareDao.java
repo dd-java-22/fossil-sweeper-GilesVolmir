@@ -37,7 +37,7 @@ public interface DigSiteSquareDao {
    * board.
    *
    * @param digSiteSquares Collection of squares to insert.
-   * @return Array of generated primary key IDs.
+   * @return List of generated primary key IDs.
    */
   @Insert
   List<Long> insert(Collection<DigSiteSquare> digSiteSquares);

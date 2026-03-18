@@ -8,7 +8,6 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 import edu.cnm.deepdive.fossilsweeper.model.entity.CollectedFossil;
-import edu.cnm.deepdive.fossilsweeper.model.pojo.CollectedFossilWithStats;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,10 +18,10 @@ public interface CollectedFossilDao {
   long insert(CollectedFossil collectedFossil);
 
   @Update
-  long update(CollectedFossil collectedFossil);
+  int update(CollectedFossil collectedFossil);
 
   @Update
-  long updateRange(Collection<CollectedFossil> collectedFossils);
+  int updateRange(Collection<CollectedFossil> collectedFossils);
 
   @Query("SELECT * FROM collected_fossil WHERE collected_fossil_id = :id")
   List<CollectedFossil> getCollectedFossilById(long id);
@@ -39,9 +38,9 @@ public interface CollectedFossilDao {
   @Delete
   int delete(CollectedFossil collectedFossil);
 
-  @Transaction
-  @Query("SELECT * FROM CollectedFossilWithStats WHERE collected_fossil_id = :id")
-  LiveData<CollectedFossilWithStats> getCollectedFossilWithStatsById(long id);
+//  @Transaction
+//  @Query("SELECT * FROM CollectedFossilWithStats WHERE collected_fossil_id = :id")
+//  LiveData<CollectedFossilWithStats> getCollectedFossilWithStatsById(long id);
 
 }
 

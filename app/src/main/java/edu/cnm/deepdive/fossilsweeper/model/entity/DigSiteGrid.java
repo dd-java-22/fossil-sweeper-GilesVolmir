@@ -56,9 +56,15 @@ public class DigSiteGrid {
   @ColumnInfo(name = "width")
   private int width;
 
-  // TODO: 3/16/2026 Forgotten required fields: total fossils (immutable) and remaining brushes (mutable) 
-  // TODO: 3/16/2026 Bubble above to DAO, ERD, UML diagram. 
+  @ColumnInfo(name = "total_fossils")
+  private int totalFossils;
 
+  @ColumnInfo(name = "remaining_brushes")
+  private int remainingBrushes;
+
+
+  // TODO: 3/16/2026 Forgotten required fields: total fossils (immutable) and remaining brushes (mutable)
+  // TODO: 3/16/2026 Bubble above to DAO, ERD, UML diagram.
   @NonNull
   @ColumnInfo(name = "start_time")
   private Instant startTime;
@@ -152,6 +158,22 @@ public class DigSiteGrid {
    */
   public void setStartTime(@NonNull Instant startTime) {
     this.startTime = startTime;
+  }
+
+  public int getTotalFossils() {
+    return totalFossils;
+  }
+
+  public void setTotalFossils(int totalFossils) {
+    this.totalFossils = totalFossils;
+  }
+
+  public int getRemainingBrushes() {
+    return remainingBrushes;
+  }
+
+  public void setRemainingBrushes(int remainingBrushes) {
+    this.remainingBrushes = remainingBrushes;
   }
 
 }

@@ -1,37 +1,37 @@
 erDiagram
-    collected_fossil }o--|| user_profile : ""
-    fossil ||--o| collected_fossil : ""
-    user_profile ||--o{ dig_site_grid : ""
-    dig_site_grid ||--|{ dig_site_square : ""
+    collected_fossil }o--|| user_profile : "users collect fossils"
+    fossil ||--o| collected_fossil : "collected fossils have a fossil"
+    user_profile ||--o{ dig_site_grid : "users can have zero or more games"
+    dig_site_grid ||--|{ dig_site_square : "every game board has a bunch of squares"
     fossil {
-        Long fossil_id PK
+        Long fossil_id "PK"
         URI image_uri
         String latin_name "NULL"
         String geological_era "NULL"
         String unknown "NULL, assorted other interesting fields"
-        Long origin_key UK "lookup key for originating DB"
+        Long origin_key "UK1 lookup key for originating DB"
     }
     collected_fossil {
-        Long collected_fossil_id PK
-        Long fossil_stats_id FK "NULL"
-        Long collecting_user FK
+        Long collected_fossil_id "PK"
+        Long fossil_stats_id "FK1 NULL"
+        Long collecting_user "FK1"
         Boolean is_favorite
         Instant date_time_collected
     }
     user_profile {
-        Long user_id PK
+        Long user_id "PK"
         Integer scanner_items
     }
     dig_site_grid {
-        Long grid_id PK
-        Long player_id FK
+        Long grid_id "PK"
+        Long player_id "FK1"
         Integer height
         Integer width
         Instant start_time
     }
     dig_site_square {
-        Long square_id PK
-        Long belonging_grid_id FK
+        Long square_id "PK"
+        Long belonging_grid_id "FK1"
         Integer x_coordinate
         Integer y_coordinate
         Boolean has_fossil

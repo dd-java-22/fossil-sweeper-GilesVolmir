@@ -14,7 +14,7 @@ order: 10
 
 ## UML class diagram
 
-[![UML Class Diagram](img/fossil-sweeper-uml.svg)](pdf/fossil-sweeper-uml.pdf)
+[![UML Class Diagram](img/uml.svg)](pdf/uml.pdf)
 
 ## Entity-relationship diagram
 

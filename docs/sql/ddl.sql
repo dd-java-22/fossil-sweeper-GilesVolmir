@@ -1,4 +1,4 @@
--- Generated 2026-03-17 20:45:14-0600 for database version 1
+-- Generated 2026-03-17 21:44:58-0600 for database version 1
 
 CREATE TABLE IF NOT EXISTS `fossil`
 (

@@ -21,18 +21,18 @@ order: 10
 [![Entity-Relationship Diagram](img/erd.svg)](pdf/erd.pdf)
 
 ### Entity Classes
-[Fossil](./../app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/Fossil.java)
+[Fossil](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/Fossil.java)
 
-[CollectedFossil](./../app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/CollectedFossil.java)
+[CollectedFossil](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/Fossil.java)
 
-[UserProfile](./../app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/UserProfile.java)
+[UserProfile](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/UserProfile.java)
 
-[DigSiteGrid](./../app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/DigSiteGrid.java)
+[DigSiteGrid](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/DigSiteGrid.java)
 
-[DigSiteSquare](./../app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/DigSiteSquare.java)
+[DigSiteSquare](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/DigSiteSquare.java)
 
 ### Database Class
-[FossilSweeperDatabase](./../app/src/main/java/edu/cnm/deepdive/fossilsweeper/service/FossilSweeperDatabase.java)
+[FossilSweeperDatabase](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/service/FossilSweeperDatabase.java)
 
 ### DDL
 {% include linked-file.md type="sqlite" file="sql/ddl.sql" %}

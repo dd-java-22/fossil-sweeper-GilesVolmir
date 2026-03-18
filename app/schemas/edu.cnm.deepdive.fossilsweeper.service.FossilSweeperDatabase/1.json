@@ -1,0 +1,334 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "82ad89d007a95e684717a1961691904e",
+    "entities": [
+      {
+        "tableName": "fossil",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`fossil_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `image_uri` TEXT NOT NULL, `latin_name` TEXT, `geological_era` TEXT, `origin_key` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "fossil_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageUri",
+            "columnName": "image_uri",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latinName",
+            "columnName": "latin_name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "geologicalEra",
+            "columnName": "geological_era",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "originKey",
+            "columnName": "origin_key",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "fossil_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_fossil_origin_key",
+            "unique": true,
+            "columnNames": [
+              "origin_key"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_fossil_origin_key` ON `${TABLE_NAME}` (`origin_key`)"
+          }
+        ]
+      },
+      {
+        "tableName": "collected_fossil",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`collected_fossil_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `fossil_stats_id` INTEGER, `collecting_user` INTEGER NOT NULL, `is_favorite` INTEGER NOT NULL, `date_time_collected` INTEGER NOT NULL, FOREIGN KEY(`fossil_stats_id`) REFERENCES `fossil`(`fossil_id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`collecting_user`) REFERENCES `user_profile`(`user_profile_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "collected_fossil_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fossilStatsId",
+            "columnName": "fossil_stats_id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "collectingUser",
+            "columnName": "collecting_user",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "is_favorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateTimeCollected",
+            "columnName": "date_time_collected",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "collected_fossil_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_collected_fossil_fossil_stats_id",
+            "unique": false,
+            "columnNames": [
+              "fossil_stats_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_collected_fossil_fossil_stats_id` ON `${TABLE_NAME}` (`fossil_stats_id`)"
+          },
+          {
+            "name": "index_collected_fossil_collecting_user",
+            "unique": false,
+            "columnNames": [
+              "collecting_user"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_collected_fossil_collecting_user` ON `${TABLE_NAME}` (`collecting_user`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "fossil",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "fossil_stats_id"
+            ],
+            "referencedColumns": [
+              "fossil_id"
+            ]
+          },
+          {
+            "table": "user_profile",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "collecting_user"
+            ],
+            "referencedColumns": [
+              "user_profile_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "user_profile",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_profile_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `scanner_items` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "user_profile_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scannerItems",
+            "columnName": "scanner_items",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "user_profile_id"
+          ]
+        }
+      },
+      {
+        "tableName": "dig_site_grid",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dig_site_grid_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `player_id` INTEGER NOT NULL, `height` INTEGER NOT NULL, `width` INTEGER NOT NULL, `start_time` INTEGER NOT NULL, FOREIGN KEY(`player_id`) REFERENCES `user_profile`(`user_profile_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "dig_site_grid_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playerId",
+            "columnName": "player_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "height",
+            "columnName": "height",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "width",
+            "columnName": "width",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startTime",
+            "columnName": "start_time",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "dig_site_grid_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_dig_site_grid_player_id",
+            "unique": false,
+            "columnNames": [
+              "player_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_dig_site_grid_player_id` ON `${TABLE_NAME}` (`player_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "user_profile",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "player_id"
+            ],
+            "referencedColumns": [
+              "user_profile_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "dig_site_square",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dig_site_square_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `belonging_grid_id` INTEGER NOT NULL, `x_coordinate` INTEGER NOT NULL, `y_coordinate` INTEGER NOT NULL, `has_fossil` INTEGER NOT NULL, `moore_neighbor_fossils` INTEGER NOT NULL, `state` INTEGER NOT NULL, `last_modified` INTEGER NOT NULL, FOREIGN KEY(`belonging_grid_id`) REFERENCES `dig_site_grid`(`dig_site_grid_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "dig_site_square_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "belongingGridId",
+            "columnName": "belonging_grid_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "xCoordinate",
+            "columnName": "x_coordinate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "yCoordinate",
+            "columnName": "y_coordinate",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasFossil",
+            "columnName": "has_fossil",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mooreNeighborFossils",
+            "columnName": "moore_neighbor_fossils",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "state",
+            "columnName": "state",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastModified",
+            "columnName": "last_modified",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "dig_site_square_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_dig_site_square_belonging_grid_id",
+            "unique": false,
+            "columnNames": [
+              "belonging_grid_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_dig_site_square_belonging_grid_id` ON `${TABLE_NAME}` (`belonging_grid_id`)"
+          },
+          {
+            "name": "index_dig_site_square_belonging_grid_id_x_coordinate_y_coordinate",
+            "unique": true,
+            "columnNames": [
+              "belonging_grid_id",
+              "x_coordinate",
+              "y_coordinate"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_dig_site_square_belonging_grid_id_x_coordinate_y_coordinate` ON `${TABLE_NAME}` (`belonging_grid_id`, `x_coordinate`, `y_coordinate`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "dig_site_grid",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "belonging_grid_id"
+            ],
+            "referencedColumns": [
+              "dig_site_grid_id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '82ad89d007a95e684717a1961691904e')"
+    ]
+  }
+}

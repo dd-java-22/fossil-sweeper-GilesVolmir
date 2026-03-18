@@ -19,16 +19,16 @@ Fossil themed minesweeper with a card collecting element and a small window into
 ## Intended users and user stories
 
 + Casual Fossil Lover
-  As someone interested in archaology and ancient creatures, I like discovering new fossils by uncovering them in Fossil Sweeper.
+    As someone interested in paleontology and ancient creatures, I like discovering new fossils by uncovering them in Fossil Sweeper.
 
-+ Puzzle Game Enthusiast
-  As a puzzle pro, I appreciate Fossil Sweeper's tile reveal item to perfect win sweeper games that would otherwise come down to luck.
++ Puzzle Game Enthusiast 
+    As a puzzle pro, I appreciate Fossil Sweeper's tile reveal item to perfect win sweeper games that would otherwise come down to luck.
 
 + Timekilling Puzzler
-  Since I'm just learning puzzles, I like that making a mistake doesn't end the whole game and lets me keep playing and get the other fossils.
+    Since I'm just learning puzzles, I like that making a mistake doesn't end the whole game and lets me keep playing and get the other fossils.
 
-+ Archaology Educator
-  As a science teacher, I introduce this game to my students to get them familiar with real-world archaeology data.
++ Paleontology Educator
+    As a science teacher, I introduce this game to my students to get them familiar with real-world archaeology data.
 
 
 ## Functionality

@@ -9,22 +9,22 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import dagger.hilt.android.AndroidEntryPoint;
-import edu.cnm.deepdive.fossilsweeper.databinding.FragmentMainBinding;
+import edu.cnm.deepdive.fossilsweeper.databinding.FragmentDigSiteBinding;
 
 @AndroidEntryPoint
-public class MainFragment extends Fragment {
+public class DigSiteFragment extends Fragment {
 
-  private FragmentMainBinding binding;
+  private FragmentDigSiteBinding binding;
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    binding = FragmentMainBinding.inflate(inflater, container, false);
-    // Set up navigation to DigSiteFragment
+    binding = FragmentDigSiteBinding.inflate(inflater, container, false);
+    // Set up navigation to MainFragment
     binding.getRoot().setOnClickListener(v ->
         Navigation.findNavController(binding.getRoot())
-            .navigate(MainFragmentDirections.navigateToDigSiteFragment()));
+            .navigate(DigSiteFragmentDirections.navigateToMainFragment()));
     return binding.getRoot();
   }
 

@@ -9,6 +9,22 @@
     android:id="@+id/main_fragment"
     android:name="edu.cnm.deepdive.fossilsweeper.controller.MainFragment"
     android:label="@string/main_fragment_title"
-    tools:layout="@layout/fragment_main" />
+    tools:layout="@layout/fragment_main">
+
+    <action
+      android:id="@+id/navigate_to_dig_site_fragment"
+      app:destination="@id/dig_site_fragment" />
+  </fragment>
+
+  <fragment
+    android:id="@+id/dig_site_fragment"
+    android:name="edu.cnm.deepdive.fossilsweeper.controller.DigSiteFragment"
+    android:label="@string/dig_site_fragment_title"
+    tools:layout="@layout/fragment_dig_site">
+
+    <action
+      android:id="@+id/navigate_to_main_fragment"
+      app:destination="@id/main_fragment" />
+  </fragment>
 
 </navigation>

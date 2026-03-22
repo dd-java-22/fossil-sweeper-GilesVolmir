@@ -1,3 +1,4 @@
 <resources>
   <string name="main_fragment_title">Main</string>
+  <string name="dig_site_fragment_title">Dig Site</string>
 </resources>

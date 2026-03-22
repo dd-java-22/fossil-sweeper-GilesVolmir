@@ -14,6 +14,10 @@
     <action
       android:id="@+id/navigate_to_dig_site_fragment"
       app:destination="@id/dig_site_fragment" />
+
+    <action
+      android:id="@+id/navigate_to_fossil_gallery_fragment"
+      app:destination="@id/fossil_gallery_fragment" />
   </fragment>
 
   <fragment
@@ -21,6 +25,17 @@
     android:name="edu.cnm.deepdive.fossilsweeper.controller.DigSiteFragment"
     android:label="@string/dig_site_fragment_title"
     tools:layout="@layout/fragment_dig_site">
+
+    <action
+      android:id="@+id/navigate_to_main_fragment"
+      app:destination="@id/main_fragment" />
+  </fragment>
+
+  <fragment
+    android:id="@+id/fossil_gallery_fragment"
+    android:name="edu.cnm.deepdive.fossilsweeper.controller.FossilGalleryFragment"
+    android:label="@string/fossil_gallery_fragment_title"
+    tools:layout="@layout/fragment_fossil_gallery">
 
     <action
       android:id="@+id/navigate_to_main_fragment"

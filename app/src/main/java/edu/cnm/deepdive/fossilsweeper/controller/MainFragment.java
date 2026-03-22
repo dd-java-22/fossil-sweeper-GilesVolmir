@@ -22,9 +22,12 @@ public class MainFragment extends Fragment {
       @Nullable Bundle savedInstanceState) {
     binding = FragmentMainBinding.inflate(inflater, container, false);
     // Set up navigation to DigSiteFragment
-    binding.playGameButton.setOnClickListener(v ->
+    binding.playGameButton.setOnClickListener((v) ->
         Navigation.findNavController(binding.getRoot())
             .navigate(MainFragmentDirections.navigateToDigSiteFragment()));
+    binding.fossilGalleryButton.setOnClickListener((v) ->
+        Navigation.findNavController(binding.getRoot())
+            .navigate(MainFragmentDirections.navigateToFossilGalleryFragment()));
     return binding.getRoot();
   }
 

@@ -22,7 +22,7 @@ public class FossilGalleryFragment extends Fragment {
       @Nullable Bundle savedInstanceState) {
     binding = FragmentFossilGalleryBinding.inflate(inflater, container, false);
     // Set up navigation to MainFragment
-    binding.getRoot().setOnClickListener(v ->
+    binding.backButton.setOnClickListener(v ->
         Navigation.findNavController(binding.getRoot())
             .navigate(FossilGalleryFragmentDirections.navigateToMainFragment()));
     return binding.getRoot();

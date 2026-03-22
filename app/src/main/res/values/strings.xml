@@ -2,4 +2,7 @@
   <string name="main_fragment_title">Main</string>
   <string name="dig_site_fragment_title">Dig Site</string>
   <string name="fossil_gallery_fragment_title">Fossil Gallery</string>
+  <string name="play_game_button_text">Go to Digsite!</string>
+  <string name="fossil_gallery_button_text">Fossil Gallery</string>
+  <string name="settings_button_text">Settings</string>
 </resources>

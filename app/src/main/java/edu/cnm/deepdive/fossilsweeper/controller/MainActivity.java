@@ -10,9 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import dagger.hilt.android.AndroidEntryPoint;
 import edu.cnm.deepdive.fossilsweeper.R;
 import edu.cnm.deepdive.fossilsweeper.databinding.ActivityMainBinding;
 
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
   ActivityMainBinding binding;

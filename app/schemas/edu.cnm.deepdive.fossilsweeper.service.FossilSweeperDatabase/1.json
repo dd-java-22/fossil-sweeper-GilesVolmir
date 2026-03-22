@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "82ad89d007a95e684717a1961691904e",
+    "identityHash": "4cc3b057d60aa24fba193639864d1a13",
     "entities": [
       {
         "tableName": "fossil",
@@ -166,7 +166,7 @@
       },
       {
         "tableName": "dig_site_grid",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dig_site_grid_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `player_id` INTEGER NOT NULL, `height` INTEGER NOT NULL, `width` INTEGER NOT NULL, `start_time` INTEGER NOT NULL, FOREIGN KEY(`player_id`) REFERENCES `user_profile`(`user_profile_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dig_site_grid_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `player_id` INTEGER NOT NULL, `height` INTEGER NOT NULL, `width` INTEGER NOT NULL, `total_fossils` INTEGER NOT NULL, `remaining_brushes` INTEGER NOT NULL, `start_time` INTEGER NOT NULL, FOREIGN KEY(`player_id`) REFERENCES `user_profile`(`user_profile_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -189,6 +189,18 @@
           {
             "fieldPath": "width",
             "columnName": "width",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalFossils",
+            "columnName": "total_fossils",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "remainingBrushes",
+            "columnName": "remaining_brushes",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -328,7 +340,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '82ad89d007a95e684717a1961691904e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4cc3b057d60aa24fba193639864d1a13')"
     ]
   }
 }

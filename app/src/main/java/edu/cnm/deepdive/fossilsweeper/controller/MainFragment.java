@@ -22,7 +22,7 @@ public class MainFragment extends Fragment {
       @Nullable Bundle savedInstanceState) {
     binding = FragmentMainBinding.inflate(inflater, container, false);
     // Set up navigation to DigSiteFragment
-    binding.getRoot().setOnClickListener(v ->
+    binding.playGameButton.setOnClickListener(v ->
         Navigation.findNavController(binding.getRoot())
             .navigate(MainFragmentDirections.navigateToDigSiteFragment()));
     return binding.getRoot();

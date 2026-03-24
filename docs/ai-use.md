@@ -10,7 +10,7 @@ order: 20
 {:.no_toc:}
 
 - ToC
-  {:toc}
+{:toc}
 
 ## Milestone 1
 No AI was used to complete Milestone 1 beyond inline complete in IntelliJ IDEA.

@@ -15,8 +15,10 @@
  */
 package edu.cnm.deepdive.fossilsweeper.model.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 /**
@@ -24,13 +26,19 @@ import androidx.room.PrimaryKey;
  * information.
  */
 @Entity(
-    tableName = "user_profile"
+    tableName = "user_profile",
+    indices = {
+        @Index(value = "oauth_key", unique = true)
+    }
 )
 public class UserProfile {
 
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "user_profile_id")
   private long id;
+
+  @ColumnInfo(name = "oauth_key")
+  private @NonNull String oauthKey = "";
 
   @ColumnInfo(name = "scanner_items")
   private int scannerItems;
@@ -51,6 +59,15 @@ public class UserProfile {
    */
   public void setId(long id) {
     this.id = id;
+  }
+
+  @NonNull
+  public String getOauthKey() {
+    return oauthKey;
+  }
+
+  public void setOauthKey(@NonNull String oauthKey) {
+    this.oauthKey = oauthKey;
   }
 
   /**

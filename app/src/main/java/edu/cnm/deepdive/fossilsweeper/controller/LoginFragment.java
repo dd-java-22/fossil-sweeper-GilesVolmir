@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import com.google.android.material.snackbar.Snackbar;
 import dagger.hilt.android.AndroidEntryPoint;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import edu.cnm.deepdive.fossilsweeper.R;
 import edu.cnm.deepdive.fossilsweeper.databinding.FragmentLoginBinding;
 import edu.cnm.deepdive.fossilsweeper.viewmodel.LoginViewModel;
@@ -33,7 +34,7 @@ public class LoginFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
     viewModel.getAuthenticationState().observe(getViewLifecycleOwner(), (state) -> {
       switch (state) {
         case AUTHENTICATED:
@@ -49,7 +50,7 @@ public class LoginFragment extends Fragment {
           break;
       }
     });
-   viewModel.signIn(requireActivity());
+//   viewModel.signIn(requireActivity());
   }
 
   @Override

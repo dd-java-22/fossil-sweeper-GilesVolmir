@@ -8,4 +8,6 @@
   <string name="fossil_gallery_button_text">Fossil Gallery</string>
   <string name="settings_button_text">Settings</string>
   <string name="login_error_message">Sign-in failed. Please try again.</string>
+  <string name="logout_button_text">Logout</string>
+  <string name="fossil_view_dialog_title">Fossil Title</string>
 </resources>

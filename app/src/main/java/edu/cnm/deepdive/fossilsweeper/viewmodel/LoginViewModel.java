@@ -51,6 +51,17 @@ public class LoginViewModel extends ViewModel {
         });
   }
 
+  public void signOut() {
+    authRepository.signOut()
+        .whenComplete((result, throwable) -> {
+          if (throwable != null) {
+            Log.e(TAG, "Sign-out failed", throwable);
+          } else {
+            authenticationState.postValue(AuthenticationState.UNAUTHENTICATED);
+          }
+        });
+  }
+
   private void attemptFullSignIn(@NonNull Activity activity) {
     authRepository.signIn(activity)
         .whenComplete((credential, throwable) -> {

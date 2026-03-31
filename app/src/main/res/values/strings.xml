@@ -1,8 +1,11 @@
 <resources>
+  <string name="login_fragment_title">Login</string>
   <string name="main_fragment_title">Main</string>
   <string name="dig_site_fragment_title">Dig Site</string>
   <string name="fossil_gallery_fragment_title">Fossil Gallery</string>
+  <string name="login_button_text">Log in with Google</string>
   <string name="play_game_button_text">Go to Digsite!</string>
   <string name="fossil_gallery_button_text">Fossil Gallery</string>
   <string name="settings_button_text">Settings</string>
+  <string name="login_error_message">Sign-in failed. Please try again.</string>
 </resources>

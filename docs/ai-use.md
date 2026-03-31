@@ -30,4 +30,5 @@ order: 20
   logic for only navigating to main when on successful login, a global navigation action back to 
   login fragment for use after logout.
 + Claude wrote a LoginViewModel to consume the GoogleAuthRepository copied from class examples.
++ Claude made the fossil view dialog fragment and added to nav graph.
 + 

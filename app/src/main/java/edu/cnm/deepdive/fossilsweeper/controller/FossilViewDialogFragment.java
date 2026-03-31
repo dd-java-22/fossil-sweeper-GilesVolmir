@@ -25,7 +25,7 @@ public class FossilViewDialogFragment extends DialogFragment {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     // Set full-screen dialog style
-    setStyle(STYLE_NO_TITLE, android.R.style.Theme_Material3_DayNight_NoActionBar);
+    setStyle(STYLE_NO_TITLE, android.R.style.Theme_Material_NoActionBar);
   }
 
   @Nullable

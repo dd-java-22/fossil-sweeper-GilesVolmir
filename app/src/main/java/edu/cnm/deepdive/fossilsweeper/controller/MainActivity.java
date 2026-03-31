@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     binding = ActivityMainBinding.inflate(getLayoutInflater());
     EdgeToEdge.enable(this);
-    setContentView(binding.getRoot());
     ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), MainActivity::adjustInsets);
+    setContentView(binding.getRoot());
   }
 
   private static @NonNull WindowInsetsCompat adjustInsets(

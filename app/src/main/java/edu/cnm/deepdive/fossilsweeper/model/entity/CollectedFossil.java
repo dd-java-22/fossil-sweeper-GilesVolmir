@@ -68,7 +68,7 @@ public class CollectedFossil {
 
   @NonNull
   @ColumnInfo(name = "date_time_collected")
-  private Instant dateTimeCollected;
+  private Instant dateTimeCollected = Instant.now();
 
   /**
    * Gets the primary key identifier for this collected fossil.

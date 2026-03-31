@@ -26,3 +26,6 @@ order: 20
 
 + Frequent use of IntelliJ Idea's code completion.
 + Claude was used to create mostly-empty fragments with navigation between them.
++ Claude was used to make a login fragment, update the nav graph to make it the entry point, 
+  logic for only navigating to main when on successful login, a global navigation action back to 
+  login fragment for use after logout and the loginviewmodel that needed to be adapted.

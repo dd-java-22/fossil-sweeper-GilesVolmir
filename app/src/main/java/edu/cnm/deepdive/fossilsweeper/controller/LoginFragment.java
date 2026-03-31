@@ -26,7 +26,7 @@ public class LoginFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     binding = FragmentLoginBinding.inflate(inflater, container, false);
-    binding.signInButton.setOnClickListener((v) -> viewModel.signIn());
+    binding.signInButton.setOnClickListener((v) -> viewModel.signIn(requireActivity()));
     return binding.getRoot();
   }
 

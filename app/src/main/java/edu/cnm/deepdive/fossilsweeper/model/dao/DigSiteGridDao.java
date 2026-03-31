@@ -47,7 +47,7 @@ public interface DigSiteGridDao {
    * @return Dig site grid with the specified ID, or {@code null} if not found.
    */
   @Query("SELECT * FROM dig_site_grid WHERE dig_site_grid_id = :id")
-  DigSiteGrid selectById(long id);
+  LiveData<DigSiteGrid> selectById(long id);
 
   /**
    * Retrieves all dig site grids for a specific player as observable live data.

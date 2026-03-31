@@ -1,12 +1,24 @@
 package edu.cnm.deepdive.fossilsweeper.service.respository;
 
+import androidx.lifecycle.LiveData;
+import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteSquare;
 import edu.cnm.deepdive.fossilsweeper.model.type.SquareState;
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public interface DigSiteSquareRepository {
 
-  CompletableFuture<Void> updateStateByCoordinates(int x, int y, SquareState state);
+  LiveData<List<DigSiteSquare>> getAllByGridId(long gridId);
 
-  CompletableFuture<SquareState> getStateByCoordinates(int x, int y);
+  CompletableFuture<List<Long>> insertBatch(Collection<DigSiteSquare> squares);
+
+  CompletableFuture<Integer> update(DigSiteSquare square);
+
+  CompletableFuture<Integer> updateBatch(Collection<DigSiteSquare> squares);
+
+  CompletableFuture<Void> updateStateByCoordinates(long gridId, int x, int y, SquareState state);
+
+  CompletableFuture<SquareState> getStateByCoordinates(long gridId, int x, int y);
 
 }

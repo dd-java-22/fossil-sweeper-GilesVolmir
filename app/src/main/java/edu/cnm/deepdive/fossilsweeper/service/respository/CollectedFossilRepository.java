@@ -8,9 +8,9 @@ import java.util.concurrent.CompletableFuture;
 
 public interface CollectedFossilRepository {
 
-  LiveData<List<CollectedFossil>> getAllOrderByDateCollectedDesc();
+  LiveData<List<CollectedFossil>> getAllOrderByDateCollectedDesc(long userId);
 
-  LiveData<List<CollectedFossil>> getAllByFavoriteStateOrderByDateCollectedDesc(boolean favorite);
+  LiveData<List<CollectedFossil>> getAllByFavoriteStateOrderByDateCollectedDesc(long userId, boolean favorite);
 
   CompletableFuture<Long> insert(CollectedFossil collectedFossil);
 
@@ -19,5 +19,5 @@ public interface CollectedFossilRepository {
   CompletableFuture<Boolean> setFavoriteState(CollectedFossil collectedFossil,
       boolean favoriteState);
 
-  CompletableFuture<List<CollectedFossil>> getAllWithoutFossil();
+  CompletableFuture<List<CollectedFossil>> getAllWithoutFossil(long userId);
 }

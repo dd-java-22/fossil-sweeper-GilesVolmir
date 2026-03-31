@@ -29,8 +29,17 @@ public interface CollectedFossilDao {
   @Query("SELECT * FROM collected_fossil WHERE collecting_user = :userId")
   List<CollectedFossil> getAllCollectedFossilsForUser(long userId);
 
+  @Query("SELECT * FROM collected_fossil WHERE collecting_user = :userId ORDER BY date_time_collected DESC")
+  LiveData<List<CollectedFossil>> getAllCollectedFossilsForUserOrderByDate(long userId);
+
   @Query("SELECT * FROM collected_fossil WHERE collecting_user = :userId AND is_favorite = :isFavorite")
   List<CollectedFossil> getCollectedFossilsByUserAndFavorite(long userId, boolean isFavorite);
+
+  @Query("SELECT * FROM collected_fossil WHERE collecting_user = :userId AND is_favorite = :isFavorite ORDER BY date_time_collected DESC")
+  LiveData<List<CollectedFossil>> getCollectedFossilsByUserAndFavoriteOrderByDate(long userId, boolean isFavorite);
+
+  @Query("SELECT * FROM collected_fossil WHERE collecting_user = :userId AND fossil_stats_id IS NULL")
+  List<CollectedFossil> getAllWithoutFossilForUser(long userId);
 
   @Query("SELECT COUNT(*) FROM collected_fossil WHERE collecting_user = :userId")
   int getCollectedFossilCountByUser(long userId);

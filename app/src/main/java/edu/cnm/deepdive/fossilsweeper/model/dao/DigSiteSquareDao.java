@@ -60,6 +60,17 @@ public interface DigSiteSquareDao {
   @Query("SELECT * FROM dig_site_square WHERE dig_site_square_id = :id")
   DigSiteSquare selectById(long id);
 
+  /**
+   * Retrieves a single dig site square by its coordinates within a specific grid.
+   *
+   * @param gridId Grid ID.
+   * @param x X coordinate.
+   * @param y Y coordinate.
+   * @return Dig site square at the specified coordinates, or {@code null} if not found.
+   */
+  @Query("SELECT * FROM dig_site_square WHERE belonging_grid_id = :gridId AND x_coordinate = :x AND y_coordinate = :y")
+  DigSiteSquare selectByCoordinates(long gridId, int x, int y);
+
   // TODO: 3/16/2026 query moore neighborhood...? or is that a service ting?
   //  or just a query by x range, y range, and digsite? and zero neighbors field?
 

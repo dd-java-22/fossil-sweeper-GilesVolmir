@@ -60,6 +60,33 @@ public interface UserProfileDao {
   // TODO: 3/16/2026 review claude's decisions. Is this what I need for displaying the number of scanners in a UI? yeah, probably.
 
   /**
+   * Retrieves a single user profile by its OAuth key (for Google sign-in).
+   *
+   * @param oauthKey OAuth key.
+   * @return User profile with the specified OAuth key, or {@code null} if not found.
+   */
+  @Query("SELECT * FROM user_profile WHERE oauth_key = :oauthKey")
+  UserProfile selectByOauthKey(String oauthKey);
+
+  /**
+   * Retrieves a single user profile by its primary key (non-LiveData version).
+   *
+   * @param id User profile ID.
+   * @return User profile with the specified ID, or {@code null} if not found.
+   */
+  @Query("SELECT * FROM user_profile WHERE user_profile_id = :id")
+  UserProfile selectByIdSync(long id);
+
+  /**
+   * Retrieves the scanner item count for a specific user as observable live data.
+   *
+   * @param id User profile ID.
+   * @return LiveData containing the scanner item count.
+   */
+  @Query("SELECT scanner_items FROM user_profile WHERE user_profile_id = :id")
+  LiveData<Integer> selectScannerCountById(long id);
+
+  /**
    * Updates an existing user profile, typically used for scanner item inventory changes.
    *
    * @param userProfile User profile to update.
@@ -68,6 +95,16 @@ public interface UserProfileDao {
   @Update
   int update(UserProfile userProfile);
   // Could/Should I make increment/decrement methods for scanner items? by user?
+
+  /**
+   * Updates the scanner item count for a specific user.
+   *
+   * @param id User profile ID.
+   * @param scannerItems New scanner item count.
+   * @return Number of rows updated (should be 1).
+   */
+  @Query("UPDATE user_profile SET scanner_items = :scannerItems WHERE user_profile_id = :id")
+  int updateScannerItems(long id, int scannerItems);
 
   /**
    * Deletes a user profile from the database.

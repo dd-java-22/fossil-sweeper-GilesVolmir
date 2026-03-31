@@ -9,50 +9,59 @@ import edu.cnm.deepdive.fossilsweeper.model.entity.Fossil;
 import jakarta.inject.Inject;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class CollectedFossilRepositoryImpl implements CollectedFossilRepository {
 
   private final CollectedFossilDao collectedFossilDao;
-  private final UserProfileRepository userProfileRepository;
   private final Context context;
+  private final Executor executor;
 
   @Inject
-  public CollectedFossilRepositoryImpl(CollectedFossilDao collectedFossilDao,
-      UserProfileRepository userProfileRepository, @ApplicationContext Context context) {
+  CollectedFossilRepositoryImpl(CollectedFossilDao collectedFossilDao, @ApplicationContext Context context) {
     this.collectedFossilDao = collectedFossilDao;
-    this.userProfileRepository = userProfileRepository;
     this.context = context;
+    this.executor = Executors.newFixedThreadPool(4);
   }
 
   @Override
-  public LiveData<List<CollectedFossil>> getCollectedFossils() {
-    return collectedFossilDao.getAllCollectedFossilsForUser(userProfileRepository.getUserProfile());
+  public LiveData<List<CollectedFossil>> getAllOrderByDateCollectedDesc(long userId) {
+    return collectedFossilDao.getAllCollectedFossilsForUserOrderByDate(userId);
   }
 
   @Override
   public LiveData<List<CollectedFossil>> getAllByFavoriteStateOrderByDateCollectedDesc(
-      boolean favorite) {
-    throw new UnsupportedOperationException("Not Yet Implemented");
+      long userId, boolean favorite) {
+    return collectedFossilDao.getCollectedFossilsByUserAndFavoriteOrderByDate(userId, favorite);
   }
 
   @Override
   public CompletableFuture<Long> insert(CollectedFossil collectedFossil) {
-    throw new UnsupportedOperationException("Not Yet Implemented");
+    return CompletableFuture.supplyAsync(() -> collectedFossilDao.insert(collectedFossil), executor);
   }
 
   @Override
   public CompletableFuture<Boolean> setFossil(CollectedFossil collectedFossil, Fossil fossil) {
-    throw new UnsupportedOperationException("Not Yet Implemented");
+    return CompletableFuture.supplyAsync(() -> {
+      collectedFossil.setFossilStatsId(fossil.getId());
+      int updated = collectedFossilDao.update(collectedFossil);
+      return updated > 0;
+    }, executor);
   }
 
   @Override
   public CompletableFuture<Boolean> setFavoriteState(CollectedFossil collectedFossil,
       boolean favoriteState) {
-    throw new UnsupportedOperationException("Not Yet Implemented");
+    return CompletableFuture.supplyAsync(() -> {
+      collectedFossil.setFavorite(favoriteState);
+      int updated = collectedFossilDao.update(collectedFossil);
+      return updated > 0;
+    }, executor);
   }
 
   @Override
-  public CompletableFuture<List<CollectedFossil>> getAllWithoutFossil() {
-    throw new UnsupportedOperationException("Not Yet Implemented");
+  public CompletableFuture<List<CollectedFossil>> getAllWithoutFossil(long userId) {
+    return CompletableFuture.supplyAsync(() -> collectedFossilDao.getAllWithoutFossilForUser(userId), executor);
   }
 }

@@ -14,5 +14,5 @@ public interface UserProfileRepository {
 
   LiveData<Integer> getScanners(long userId);
 
-  CompletableFuture<Integer> consumeScanners(int numberToConsume);
+  CompletableFuture<Integer> consumeScanners(int numberToConsume, long userId);
 }

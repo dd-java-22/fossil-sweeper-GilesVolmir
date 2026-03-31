@@ -75,6 +75,10 @@ android {
         targetCompatibility = JavaVersion.valueOf("VERSION_${libs.versions.java.get()}")
     }
 
+    kotlin {
+        jvmToolchain(libs.versions.java.get().toInt())
+    }
+
     buildFeatures {
         viewBinding = true
         // Enable dataBinding if desired.

@@ -49,6 +49,7 @@ public class LoginFragment extends Fragment {
           break;
       }
     });
+   viewModel.signIn(requireActivity());
   }
 
   @Override

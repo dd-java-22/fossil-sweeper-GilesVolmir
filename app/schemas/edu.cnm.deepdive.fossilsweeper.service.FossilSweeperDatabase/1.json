@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "4cc3b057d60aa24fba193639864d1a13",
+    "identityHash": "caecda6d01526e8ce303290d287af60d",
     "entities": [
       {
         "tableName": "fossil",
@@ -142,12 +142,18 @@
       },
       {
         "tableName": "user_profile",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_profile_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `scanner_items` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_profile_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `oauth_key` TEXT NOT NULL, `scanner_items` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "user_profile_id",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "oauthKey",
+            "columnName": "oauth_key",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -162,7 +168,18 @@
           "columnNames": [
             "user_profile_id"
           ]
-        }
+        },
+        "indices": [
+          {
+            "name": "index_user_profile_oauth_key",
+            "unique": true,
+            "columnNames": [
+              "oauth_key"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_user_profile_oauth_key` ON `${TABLE_NAME}` (`oauth_key`)"
+          }
+        ]
       },
       {
         "tableName": "dig_site_grid",
@@ -340,7 +357,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4cc3b057d60aa24fba193639864d1a13')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'caecda6d01526e8ce303290d287af60d')"
     ]
   }
 }

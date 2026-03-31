@@ -59,13 +59,36 @@ public interface FossilDao {
   Fossil selectById(long id);
 
   /**
-   * Retrieves a random fossil from the database to award to the player.
+   * Retrieves a random fossil from the database.
    *
    * @return Random fossil.
    */
   @Query("SELECT * FROM fossil ORDER BY RANDOM() LIMIT 1")
   Fossil selectRandom();
-  // TODO: 3/16/2026 Claude AI's function: awarding a fossil should get the next (or a random) unassigned fossil instead.
+
+  /**
+   * Retrieves a random unassigned fossil (not referenced by any CollectedFossil).
+   * Uses a LEFT JOIN to find fossils that have no collected_fossil entries.
+   *
+   * @return Random unassigned fossil, or {@code null} if all fossils are assigned.
+   */
+  @Query("SELECT f.* FROM fossil f "
+      + "LEFT JOIN collected_fossil cf ON f.fossil_id = cf.fossil_stats_id "
+      + "WHERE cf.fossil_stats_id IS NULL "
+      + "ORDER BY RANDOM() LIMIT 1")
+  Fossil selectRandomUnassigned();
+
+  /**
+   * Retrieves a list of unassigned fossils (not referenced by any CollectedFossil).
+   *
+   * @param limit Maximum number of fossils to return.
+   * @return List of unassigned fossils.
+   */
+  @Query("SELECT f.* FROM fossil f "
+      + "LEFT JOIN collected_fossil cf ON f.fossil_id = cf.fossil_stats_id "
+      + "WHERE cf.fossil_stats_id IS NULL "
+      + "ORDER BY RANDOM() LIMIT :limit")
+  List<Fossil> selectUnassigned(int limit);
 
   /**
    * Deletes a fossil from the database.

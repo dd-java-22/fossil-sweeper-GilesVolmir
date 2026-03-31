@@ -25,6 +25,10 @@ public class FossilGalleryFragment extends Fragment {
     binding.backButton.setOnClickListener(v ->
         Navigation.findNavController(binding.getRoot())
             .navigate(FossilGalleryFragmentDirections.navigateToMainFragment()));
+    // Set up test button for fossil dialog (with example fossil ID)
+    binding.testFossilDialogButton.setOnClickListener(v ->
+        Navigation.findNavController(binding.getRoot())
+            .navigate(FossilGalleryFragmentDirections.navigateToFossilViewDialog(1L)));
     return binding.getRoot();
   }
 

@@ -11,8 +11,20 @@
     android:layout_height="wrap_content"
     android:text="back to main menu"
     app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/test_fossil_dialog_button"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintVertical_chainStyle="packed"/>
+
+  <Button
+    android:id="@+id/test_fossil_dialog_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/test_fossil_dialog_button_text"
+    app:layout_constraintTop_toBottomOf="@id/back_button"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"/>
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_margin="@dimen/half_static_spacing"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

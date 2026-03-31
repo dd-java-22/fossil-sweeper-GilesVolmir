@@ -10,4 +10,9 @@
   <string name="login_error_message">Sign-in failed. Please try again.</string>
   <string name="logout_button_text">Logout</string>
   <string name="fossil_view_dialog_title">Fossil Title</string>
+  <string name="fossil_detail_title">Fossil Details</string>
+  <string name="latin_name_label">Scientific Name</string>
+  <string name="geological_era_label">Geological Era</string>
+  <string name="unknown_fossil">Unknown Fossil</string>
+  <string name="fossil_image_description">Fossil photograph</string>
 </resources>

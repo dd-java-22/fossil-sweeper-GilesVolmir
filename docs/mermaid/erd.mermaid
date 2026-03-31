@@ -1,43 +1,44 @@
 erDiagram
     collected_fossil }o--|| user_profile : "users collect fossils"
-    fossil ||--o| collected_fossil : "collected fossils have a fossil"
+    fossil |o--o| collected_fossil : "collected fossils get a fossil once available"
     user_profile ||--o{ dig_site_grid : "users can have zero or more games"
-    dig_site_grid ||--|{ dig_site_square : "every game board has a bunch of squares"
+    dig_site_grid ||--|{ dig_site_square : "every game board has its set of squares"
     fossil {
-        Long fossil_id "PK"
-        URI image_uri
+        long fossil_id "PK"
+        Uri image_uri
         String latin_name "NULL"
         String geological_era "NULL"
         String unknown "NULL, assorted other interesting fields"
-        Long origin_key "UK1 lookup key for originating DB"
+        long origin_key "UK1 lookup key for originating DB"
     }
     collected_fossil {
-        Long collected_fossil_id "PK"
+        long collected_fossil_id "PK"
         Long fossil_stats_id "FK1 NULL"
-        Long collecting_user "FK1"
-        Boolean is_favorite
+        long collecting_user "FK2"
+        boolean is_favorite
         Instant date_time_collected
     }
     user_profile {
-        Long user_id "PK"
-        Integer scanner_items
+        long user_id "PK"
+        String oauth_key "UK1"
+        int scanner_items
     }
     dig_site_grid {
-        Long grid_id "PK"
-        Long player_id "FK1"
-        Integer height
-        Integer width
-        Integer total_fossils
-        Integer remaining_brushes
+        long dig_site_grid_id "PK"
+        long player_id "FK1"
+        int height
+        int width
+        int total_fossils
+        int remaining_brushes
         Instant start_time
     }
     dig_site_square {
-        Long square_id "PK"
-        Long belonging_grid_id "FK1"
-        Integer x_coordinate
-        Integer y_coordinate
-        Boolean has_fossil
-        Integer moore_neighbor_fossils
+        long dig_site_square_id "PK"
+        long belonging_grid_id "FK1"
+        int x_coordinate
+        int y_coordinate
+        boolean has_fossil
+        int moore_neighbor_fossils
         enum state "UNTOUCHED|FENCED|DUG|EXTRACTED"
         Instant last_modified
     }

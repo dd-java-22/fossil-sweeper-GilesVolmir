@@ -31,3 +31,8 @@ order: 20
   login fragment for use after logout.
 + Claude wrote a LoginViewModel to consume the GoogleAuthRepository copied from class examples.
 + Claude made the fossil view dialog fragment and added to nav graph and added test buttons to view it from the appropriate fragments.
++ Had Claude give it a shot to just implement the Repositories from the stubs I managed to make. 
+  Using its implementation besides removing the explicit executor assignment and just letting it 
+  use the common for join thread pool.
++ Had Claude write me an SQL query to get any fossils that were not assigned to a collected 
+  fossil yet. it was just a left join but I forgot how they worked and it got it for me.

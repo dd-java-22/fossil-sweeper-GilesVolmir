@@ -1,28 +1,20 @@
 package edu.cnm.deepdive.fossilsweeper.service.respository;
 
-import android.content.Context;
 import androidx.lifecycle.LiveData;
-import dagger.hilt.android.qualifiers.ApplicationContext;
 import edu.cnm.deepdive.fossilsweeper.model.dao.CollectedFossilDao;
 import edu.cnm.deepdive.fossilsweeper.model.entity.CollectedFossil;
 import edu.cnm.deepdive.fossilsweeper.model.entity.Fossil;
 import jakarta.inject.Inject;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 public class CollectedFossilRepositoryImpl implements CollectedFossilRepository {
 
   private final CollectedFossilDao collectedFossilDao;
-  private final Context context;
-  private final Executor executor;
 
   @Inject
-  CollectedFossilRepositoryImpl(CollectedFossilDao collectedFossilDao, @ApplicationContext Context context) {
+  CollectedFossilRepositoryImpl(CollectedFossilDao collectedFossilDao) {
     this.collectedFossilDao = collectedFossilDao;
-    this.context = context;
-    this.executor = Executors.newFixedThreadPool(4);
   }
 
   @Override
@@ -38,7 +30,7 @@ public class CollectedFossilRepositoryImpl implements CollectedFossilRepository 
 
   @Override
   public CompletableFuture<Long> insert(CollectedFossil collectedFossil) {
-    return CompletableFuture.supplyAsync(() -> collectedFossilDao.insert(collectedFossil), executor);
+    return CompletableFuture.supplyAsync(() -> collectedFossilDao.insert(collectedFossil));
   }
 
   @Override
@@ -47,7 +39,7 @@ public class CollectedFossilRepositoryImpl implements CollectedFossilRepository 
       collectedFossil.setFossilStatsId(fossil.getId());
       int updated = collectedFossilDao.update(collectedFossil);
       return updated > 0;
-    }, executor);
+    });
   }
 
   @Override
@@ -57,11 +49,12 @@ public class CollectedFossilRepositoryImpl implements CollectedFossilRepository 
       collectedFossil.setFavorite(favoriteState);
       int updated = collectedFossilDao.update(collectedFossil);
       return updated > 0;
-    }, executor);
+    });
   }
 
   @Override
   public CompletableFuture<List<CollectedFossil>> getAllWithoutFossil(long userId) {
-    return CompletableFuture.supplyAsync(() -> collectedFossilDao.getAllWithoutFossilForUser(userId), executor);
+    return CompletableFuture.supplyAsync(
+        () -> collectedFossilDao.getAllWithoutFossilForUser(userId));
   }
 }

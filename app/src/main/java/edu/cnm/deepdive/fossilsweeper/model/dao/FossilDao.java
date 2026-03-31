@@ -58,25 +58,6 @@ public interface FossilDao {
   @Query("SELECT * FROM fossil WHERE fossil_id = :id")
   Fossil selectById(long id);
 
-  /**
-   * Retrieves a random fossil from the database.
-   *
-   * @return Random fossil.
-   */
-  @Query("SELECT * FROM fossil ORDER BY RANDOM() LIMIT 1")
-  Fossil selectRandom();
-
-  /**
-   * Retrieves a random unassigned fossil (not referenced by any CollectedFossil).
-   * Uses a LEFT JOIN to find fossils that have no collected_fossil entries.
-   *
-   * @return Random unassigned fossil, or {@code null} if all fossils are assigned.
-   */
-  @Query("SELECT f.* FROM fossil f "
-      + "LEFT JOIN collected_fossil cf ON f.fossil_id = cf.fossil_stats_id "
-      + "WHERE cf.fossil_stats_id IS NULL "
-      + "ORDER BY RANDOM() LIMIT 1")
-  Fossil selectRandomUnassigned();
 
   /**
    * Retrieves a list of unassigned fossils (not referenced by any CollectedFossil).
@@ -88,7 +69,7 @@ public interface FossilDao {
       + "LEFT JOIN collected_fossil cf ON f.fossil_id = cf.fossil_stats_id "
       + "WHERE cf.fossil_stats_id IS NULL "
       + "ORDER BY RANDOM() LIMIT :limit")
-  List<Fossil> selectUnassigned(int limit);
+  List<Fossil> selectRandomUnassigned(int limit);
 
   /**
    * Deletes a fossil from the database.

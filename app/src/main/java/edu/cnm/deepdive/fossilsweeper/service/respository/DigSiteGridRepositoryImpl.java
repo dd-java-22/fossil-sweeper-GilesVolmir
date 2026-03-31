@@ -1,8 +1,6 @@
 package edu.cnm.deepdive.fossilsweeper.service.respository;
 
-import android.content.Context;
 import androidx.lifecycle.LiveData;
-import dagger.hilt.android.qualifiers.ApplicationContext;
 import edu.cnm.deepdive.fossilsweeper.model.dao.DigSiteGridDao;
 import edu.cnm.deepdive.fossilsweeper.model.dao.DigSiteSquareDao;
 import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteGrid;
@@ -11,23 +9,17 @@ import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 @Singleton
 public class DigSiteGridRepositoryImpl implements DigSiteGridRepository {
 
   private final DigSiteGridDao gridDao;
   private final DigSiteSquareDao squareDao;
-  private final Context context;
-  private final Executor executor;
 
   @Inject
-  DigSiteGridRepositoryImpl(DigSiteGridDao gridDao, DigSiteSquareDao squareDao, @ApplicationContext Context context) {
+  DigSiteGridRepositoryImpl(DigSiteGridDao gridDao, DigSiteSquareDao squareDao) {
     this.gridDao = gridDao;
     this.squareDao = squareDao;
-    this.context = context;
-    this.executor = Executors.newFixedThreadPool(4);
   }
 
   @Override
@@ -42,21 +34,22 @@ public class DigSiteGridRepositoryImpl implements DigSiteGridRepository {
 
   @Override
   public CompletableFuture<Long> insert(DigSiteGrid digSiteGrid) {
-    return CompletableFuture.supplyAsync(() -> gridDao.insert(digSiteGrid), executor);
+    return CompletableFuture.supplyAsync(() -> gridDao.insert(digSiteGrid));
   }
 
   @Override
   public CompletableFuture<Integer> updateRemainingBrushes(long gridId, int remainingBrushes) {
-    return CompletableFuture.supplyAsync(() -> gridDao.updateRemainingBrushes(gridId, remainingBrushes), executor);
+    return CompletableFuture.supplyAsync(
+        () -> gridDao.updateRemainingBrushes(gridId, remainingBrushes));
   }
 
   @Override
   public CompletableFuture<Integer> delete(DigSiteGrid digSiteGrid) {
-    return CompletableFuture.supplyAsync(() -> gridDao.delete(digSiteGrid), executor);
+    return CompletableFuture.supplyAsync(() -> gridDao.delete(digSiteGrid));
   }
 
   @Override
   public CompletableFuture<DigSiteSquare> getSquareByCoordinates(long gridId, int x, int y) {
-    return CompletableFuture.supplyAsync(() -> squareDao.selectByCoordinates(gridId, x, y), executor);
+    return CompletableFuture.supplyAsync(() -> squareDao.selectByCoordinates(gridId, x, y));
   }
 }

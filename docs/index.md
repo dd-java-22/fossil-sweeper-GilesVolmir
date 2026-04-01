@@ -19,28 +19,34 @@ Fossil themed minesweeper with a card collecting element and a small window into
 ## Intended users and user stories
 
 + Casual Fossil Lover
+
     As someone interested in paleontology and ancient creatures, I like discovering new fossils by uncovering them in Fossil Sweeper.
 
-+ Puzzle Game Enthusiast 
++ Puzzle Game Enthusiast
+
     As a puzzle pro, I appreciate Fossil Sweeper's tile reveal item to perfect win sweeper games that would otherwise come down to luck.
 
 + Timekilling Puzzler
+
     Since I'm just learning puzzles, I like that making a mistake doesn't end the whole game and lets me keep playing and get the other fossils.
 
 + Paleontology Educator
+
     As a science teacher, I introduce this game to my students to get them familiar with real-world archaeology data.
 
 
 ## Functionality
 
 General rules of Fossil Sweeper are the same as Minesweeper.  Tapping a tile digs it out, revealing either nothing, the number of nearby fossils, or a broken fossil (oh no!).  Selecting the fence tool makes tapping protect the tile so you don't accidentally excavate it. Selecting the brush tool extracts the tile carefully, so if it contains a fossil, you acquire it.  There are only as many brushes as fossils, so wasting any will result in the player not acquiring all the fossils on the board. The game ends when you use your last brush. A "travel" tool allows panning and zooming only.
+
 The board fills the screen, except for a control bar along the top. The board can be zoomed to make the buttons big enough to hit on large boards.
+
 Every time you successfully excavate a fossil, you are shown a fossil card from a scientific database with a photo and infoblock, and that card is stored permanently in a gallery accessible from the app.
 
 
 ## Persistent data
 
-+ Fossils acquired -- including potential fossils to fill in info once available.
++ Fossils acquired—including potential fossils to fill in info once available.
 + Prefetched fossils to be acquired later
 + In-progress game
 + inventory of long-term power ups

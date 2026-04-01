@@ -12,14 +12,14 @@ order: 20
 - ToC
 {:toc}
 
-### Entity Relationship Diagram
+## Entity Relationship Diagram
 
 This diagram illustrates the relationships between the persistent model classes in our application. It provides a visual representation of how data is interconnected and how different entities interact with each other.
 
 [![Entity-Relationship Diagram](../img/erd.svg)](../pdf/erd.pdf)
 
 
-### Entity Classes
+## Entity Classes
 
 The following entity classes define the persistent data model for our application:
 
@@ -34,7 +34,7 @@ The following entity classes define the persistent data model for our applicatio
 [DigSiteSquare](https://github.com/dd-java-22/fossil-sweeper-GilesVolmir/blob/main/app/src/main/java/edu/cnm/deepdive/fossilsweeper/model/entity/DigSiteSquare.java)
 
 
-### Database Class
+## Database Class
 
 The Database class shown here is the way we create and access our database.
 

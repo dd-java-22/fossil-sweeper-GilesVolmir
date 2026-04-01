@@ -12,11 +12,11 @@ order: 90
 - ToC
 {:toc}
 
-### Milestone 1
+## Milestone 1
 
 + No AI was used to complete Milestone 1 beyond inline complete in IntelliJ IDEA.
 
-### Milestone 2
+## Milestone 2
 
 + Claude was used to create Entity Classes from my ERD. 
 
@@ -24,7 +24,7 @@ order: 90
 
 + Claude helped me add two fields to DigSiteGrid.
 
-### Milestone 3
+## Milestone 3
 
 + Frequent use of IntelliJ Idea's code completion.
 

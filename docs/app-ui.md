@@ -12,6 +12,6 @@ order: 20
 - ToC
 {:toc}
 
-### UI Navigation Wireframe
+## UI Navigation Wireframe
 
 [![Wireframe](img/fossil-sweeper-wireframe.svg)](pdf/fossil-sweeper-wireframe.pdf)

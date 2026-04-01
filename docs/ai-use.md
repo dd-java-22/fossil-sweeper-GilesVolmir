@@ -1,7 +1,7 @@
 ---
 title: AI Use
 description: "Tasks used for AI in each sprint"
-order: 20
+order: 90
 ---
 
 {% include ddc-abbreviations.md %}
@@ -12,27 +12,33 @@ order: 20
 - ToC
 {:toc}
 
-## Milestone 1
+### Milestone 1
 
 + No AI was used to complete Milestone 1 beyond inline complete in IntelliJ IDEA.
 
-## Milestone 2
+### Milestone 2
 
 + Claude was used to create Entity Classes from my ERD. 
+
 + Claude was used to create DAO classes after I wrote the first one based on in-class exercise.
+
 + Claude helped me add two fields to DigSiteGrid.
 
-## Milestone 3
+### Milestone 3
 
 + Frequent use of IntelliJ Idea's code completion.
+
 + Claude was used to create mostly-empty fragments with navigation between them.
-+ Claude was used to make a login fragment, update the nav graph to make it the entry point, 
-  logic for only navigating to main when on successful login, a global navigation action back to 
-  login fragment for use after logout.
+
++ Claude was used to make a login fragment, update the nav graph to make it the entry point, logic for only navigating to main when on successful login, a global navigation action back to login fragment for use after logout.
+
 + Claude wrote a LoginViewModel to consume the GoogleAuthRepository copied from class examples.
+
 + Claude made the fossil view dialog fragment and added to nav graph and added test buttons to view it from the appropriate fragments.
+
 + Had Claude give it a shot to just implement the Repositories from the stubs I managed to make. 
   Using its implementation besides removing the explicit executor assignment and just letting it 
   use the common for join thread pool.
+
 + Had Claude write me an SQL query to get any fossils that were not assigned to a collected 
   fossil yet. it was just a left join but I forgot how they worked and it got it for me.

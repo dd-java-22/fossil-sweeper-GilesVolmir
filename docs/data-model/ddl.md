@@ -4,6 +4,8 @@ description: SQL database definition.
 order: 30
 ---
 
-## data-definition language (DDL) for database
+{% include ddc-abbreviations.md %}
 
-moved{% include linked-file.md type="sqlite" file="sql/ddl.sql" %}
+### data-definition language (DDL) for database
+
+{% include linked-file.md type="sqlite" file="sql/ddl.sql" %}

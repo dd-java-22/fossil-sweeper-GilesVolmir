@@ -1,11 +1,16 @@
 ---
-title: Entity Relationship Diagram and Classes
+title: ERD and Classes
 description: Persistent Model Classes and their relationships.
 order: 20
 ---
 
 {% include ddc-abbreviations.md %}
 
+## Page contents
+{:.no_toc:}
+
+- ToC
+{:toc}
 
 ### Entity Relationship Diagram
 

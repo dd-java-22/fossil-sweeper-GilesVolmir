@@ -8,8 +8,9 @@
   <action
     android:id="@+id/navigate_to_login_fragment"
     app:destination="@id/login_fragment"
-    app:popUpTo="@id/login_fragment"
-    app:popUpToInclusive="true" />
+    />
+<!--    app:popUpTo="@id/login_fragment"-->
+<!--    app:popUpToInclusive="true" -->
 
   <fragment
     android:id="@+id/login_fragment"
@@ -78,7 +79,8 @@
     <argument
       android:name="fossilId"
       app:argType="long"
-      android:defaultValue="-1L" />
+      />
+<!--      android:defaultValue="-1L"-->
   </dialog>
 
 </navigation>

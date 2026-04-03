@@ -28,7 +28,7 @@ public class DigSiteFragment extends Fragment {
     // Set up test button for fossil dialog (with example fossil ID)
     binding.testFossilDialogButton.setOnClickListener(v ->
         Navigation.findNavController(binding.getRoot())
-            .navigate(DigSiteFragmentDirections.navigateToFossilViewDialog()));
+            .navigate(DigSiteFragmentDirections.navigateToFossilViewDialog(1L)));
     return binding.getRoot();
   }
 

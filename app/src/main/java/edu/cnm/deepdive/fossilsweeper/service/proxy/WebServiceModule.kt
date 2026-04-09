@@ -13,86 +13,76 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package edu.cnm.deepdive.fossilsweeper.service;
+package edu.cnm.deepdive.fossilsweeper.service.proxy
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import dagger.Module;
-import dagger.Provides;
-import dagger.hilt.InstallIn;
-import dagger.hilt.components.SingletonComponent;
-import jakarta.inject.Singleton;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import okhttp3.logging.HttpLoggingInterceptor.Level;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
+import android.content.Context
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import edu.cnm.deepdive.fossilsweeper.R
+import jakarta.inject.Singleton
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * Hilt module that provides web service dependencies including Retrofit, OkHttpClient, and the
  * GBIF API service.
  */
 @Module
-@InstallIn(SingletonComponent.class)
-public class WebServiceModule {
-
-  /**
-   * Provides a configured Gson instance for JSON serialization/deserialization.
-   *
-   * @return Gson instance.
-   */
-  @Provides
-  @Singleton
-  Gson provideGson() {
-    return new GsonBuilder()
+@InstallIn(SingletonComponent::class)
+class WebServiceModule {
+    /**
+     * Provides a configured Gson instance for JSON serialization/deserialization.
+     * 
+     * @return Gson instance.
+     */
+    @Provides
+    @Singleton
+    fun provideGson(): Gson = GsonBuilder()
         .excludeFieldsWithoutExposeAnnotation()
-        .create();
-  }
+        .create()
 
-  /**
-   * Provides a configured OkHttpClient with logging interceptor.
-   *
-   * @return OkHttpClient instance.
-   */
-  @Provides
-  @Singleton
-  OkHttpClient provideOkHttpClient() {
-    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-    interceptor.setLevel(Level.BODY);
-    return new OkHttpClient.Builder()
-        .addInterceptor(interceptor)
-        .build();
-  }
+    /**
+     * Provides a configured OkHttpClient with logging interceptor.
+     * 
+     * @return OkHttpClient instance.
+     */
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
+        val interceptor = HttpLoggingInterceptor().apply {
+            setLevel(
+                HttpLoggingInterceptor.Level.valueOf(
+                    context.getString(R.string.log_level).uppercase()
+                )
+            )
+        }
+        return OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+    }
 
-  /**
-   * Provides a configured Retrofit instance for the GBIF API.
-   *
-   * @param client OkHttpClient instance.
-   * @param gson Gson instance.
-   * @return Retrofit instance.
-   */
-  @Provides
-  @Singleton
-  Retrofit provideRetrofit(OkHttpClient client, Gson gson) {
-    return new Retrofit.Builder()
-        .baseUrl("https://api.gbif.org/")
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-        .client(client)
-        .build();
-  }
-
-  /**
-   * Provides the GBIF service interface implementation.
-   *
-   * @param retrofit Retrofit instance.
-   * @return GbifService implementation.
-   */
-  @Provides
-  @Singleton
-  GbifService provideGbifService(Retrofit retrofit) {
-    return retrofit.create(GbifService.class);
-  }
-
+    /**
+     * Provides the GBIF service interface implementation.
+     * 
+     * @param client OkHttpClient instance.
+     * @param gson Gson instance.
+     * @return GbifService implementation.
+     */
+    @Provides
+    @Singleton
+    fun provideGbifService(client: OkHttpClient, gson: Gson): GbifService {
+        return Retrofit.Builder()
+            .baseUrl("https://api.gbif.org/")
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(client)
+            .build()
+            .create(GbifService::class.java)
+    }
 }

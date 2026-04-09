@@ -45,6 +45,7 @@ public class MainFragment extends Fragment {
   }
 
   @Override
+
   public void onDestroyView() {
     binding = null;
     super.onDestroyView();

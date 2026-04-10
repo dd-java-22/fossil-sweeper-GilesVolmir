@@ -21,6 +21,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteCoord;
 import edu.cnm.deepdive.fossilsweeper.model.type.SquareState;
 import java.time.Instant;
 
@@ -217,6 +218,10 @@ public class DigSiteSquare {
    */
   public void setLastModified(@NonNull Instant lastModified) {
     this.lastModified = lastModified;
+  }
+
+  public DigSiteCoord getCoord() {
+    return new DigSiteCoord(xCoordinate, yCoordinate);
   }
 
 }

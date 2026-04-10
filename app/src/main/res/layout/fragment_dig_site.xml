@@ -1,36 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  >
+  xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <com.google.android.material.appbar.AppBarLayout
-    android:id="@+id/app_bar_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:elevation="4dp"
-    >
-
-    <com.google.android.material.appbar.MaterialToolbar
-      android:id="@+id/toolbar"
-      android:layout_width="match_parent"
-      android:layout_height="?attr/actionBarSize"
-      app:title="@string/app_name"
-      app:navigationIcon="@drawable/abc_ic_ab_back_material"
-      />
-
-  </com.google.android.material.appbar.AppBarLayout>
-
-  <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    >
-
-    <Button
-      android:id="@+id/back_button"
+  <Button
+    android:id="@+id/back_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:layout_constraintTop_toTopOf="parent"
@@ -51,6 +27,4 @@
     app:layout_constraintEnd_toEndOf="parent"
     android:layout_margin="@dimen/half_static_spacing"/>
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

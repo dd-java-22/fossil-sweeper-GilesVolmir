@@ -16,14 +16,18 @@ public class DigSiteGridWithSquares extends DigSiteGrid {
       parentColumn = "dig_site_grid_id",
       entityColumn = "belonging_grid_id"
   )
-  private List<DigSiteSquare> squares;
+  private List<DigSiteSquare> digSiteSquares;
 
-  public void setSquares(List<DigSiteSquare> squares) {
-    this.squares = squares;
+  public void setDigSiteSquares(List<DigSiteSquare> digSiteSquares) {
+    this.digSiteSquares = digSiteSquares;
+  }
+
+  public List<DigSiteSquare> getDigSiteSquares() {
+    return digSiteSquares;
   }
 
   public Map<DigSiteCoord, DigSiteSquare> getGridSquares() {
-    return squares.stream()
+    return digSiteSquares.stream()
         .collect(Collectors.toMap(DigSiteSquare::getCoord, Function.identity()));
   }
 

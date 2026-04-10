@@ -5,6 +5,7 @@ import edu.cnm.deepdive.fossilsweeper.model.dao.DigSiteGridDao;
 import edu.cnm.deepdive.fossilsweeper.model.dao.DigSiteSquareDao;
 import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteGrid;
 import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteSquare;
+import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteGridWithSquares;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import java.util.List;
@@ -36,6 +37,18 @@ public class DigSiteGridRepositoryImpl implements DigSiteGridRepository {
   public CompletableFuture<Long> insert(DigSiteGrid digSiteGrid) {
     return CompletableFuture.supplyAsync(() -> gridDao.insert(digSiteGrid));
   }
+
+//  @Override
+//  public CompletableFuture<Long> insert(DigSiteGridWithSquares digSiteGridWithSquares) {
+//    CompletableFuture<Long> savingGrid = CompletableFuture.supplyAsync(() -> gridDao.insert(digSiteGridWithSquares.getDigSiteSquares()));
+//    savingGrid.thenAccept(gridId -> {
+//      for (DigSiteSquare square : digSiteGridWithSquares.getSquares()) {
+//        square.setGridId(gridId);
+//        squareDao.insert(square);
+//      }
+//    });
+//    return savingGrid;
+//  }
 
   @Override
   public CompletableFuture<Integer> updateRemainingBrushes(long gridId, int remainingBrushes) {

@@ -68,7 +68,7 @@ public class DigSiteSquare {
 
   @NonNull
   @ColumnInfo(name = "state")
-  private DigSiteSquareState state;
+  private DigSiteSquareState state = DigSiteSquareState.UNTOUCHED;
 
   @NonNull
   @ColumnInfo(name = "last_modified")

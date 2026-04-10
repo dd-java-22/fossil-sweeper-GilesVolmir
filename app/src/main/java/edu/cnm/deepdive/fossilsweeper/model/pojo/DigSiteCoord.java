@@ -9,7 +9,7 @@ public record DigSiteCoord(int x, int y) {
     return grid.getGridSquares().containsKey(this);
   }
 
-  Set<DigSiteCoord> getNeighbors() {
+  public Set<DigSiteCoord> getNeighbors() {
     Set<DigSiteCoord> neighbors = new HashSet<>();
     for (int i = x - 1; i <= x + 1; i++) {
       for (int j = y - 1; j <= y + 1; j++) {

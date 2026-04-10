@@ -1,16 +1,18 @@
 package edu.cnm.deepdive.fossilsweeper.service
 
+import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteSquare
+import edu.cnm.deepdive.fossilsweeper.model.entity.UserProfile
 import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteCoord
 
 interface GameplayService {
 
-    fun startNewDig(): Long
+    fun startNewDig(width: Int, height: Int, density: Int, userId: Long): Long
 
-    fun digSquare(gridId: Long, coord: DigSiteCoord)
+    fun digSquare(square: DigSiteSquare)
 
-    fun toggleFenceSquare(gridId: Long, coord: DigSiteCoord)
+    fun toggleFenceSquare(square: DigSiteSquare)
 
-    fun extractSquare(gridId: Long, coord: DigSiteCoord)
+    fun extractSquare(square: DigSiteSquare)
 
-    fun scanSquare(gridId: Long, coord: DigSiteCoord)
+    fun scanSquare(square: DigSiteSquare)
 }

@@ -42,6 +42,9 @@ public class MainFragment extends Fragment {
       Navigation.findNavController(binding.getRoot())
           .navigate(MainFragmentDirections.navigateToLoginFragment());
     });
+    binding.settingsButton.setOnClickListener((v) ->
+        Navigation.findNavController(binding.getRoot())
+            .navigate(MainFragmentDirections.navigateToSettingsFragment()));
   }
 
   @Override

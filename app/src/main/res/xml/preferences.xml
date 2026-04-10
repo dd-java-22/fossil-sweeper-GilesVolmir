@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <SeekBarPreference
+    android:key="@string/board_width_pref_key"
+    android:title="@string/board_width_pref_title"
+    android:summary="@string/board_width_pref_summary"
+    android:defaultValue="@integer/board_width_pref_default"
+    android:max="@integer/board_width_pref_max"
+    app:min="@integer/board_width_pref_min"
+    android:stepSize="1"
+    app:showSeekBarValue="true"
+  />
+
+  <SeekBarPreference
+    android:key="@string/board_height_pref_key"
+    android:title="@string/board_height_pref_title"
+    android:summary="@string/board_height_pref_summary"
+    android:defaultValue="@integer/board_height_pref_default"
+    android:max="@integer/board_height_pref_max"
+    app:min="@integer/board_height_pref_min"
+    android:stepSize="1"
+    app:showSeekBarValue="true"
+    />
+
+  <SeekBarPreference
+    android:key="@string/board_fossil_density_pref_key"
+    android:title="@string/board_fossil_density_pref_title"
+    android:summary="@string/board_fossil_density_pref_summary"
+    android:defaultValue="@integer/board_fossil_density_pref_default"
+    android:max="@integer/board_fossil_density_pref_max"
+    app:min="@integer/board_fossil_density_pref_min"
+    android:stepSize="1"
+    app:showSeekBarValue="true"
+    />
+
+</androidx.preference.PreferenceScreen>

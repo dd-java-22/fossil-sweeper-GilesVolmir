@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 /**
  * Enumeration representing the possible states of a dig site square in the fossil sweeper game.
  */
-public enum SquareState {
+public enum DigSiteSquareState {
 
   /** Square is in the default state. */
   UNTOUCHED(10),
@@ -38,26 +38,26 @@ public enum SquareState {
   EXTRACTED(40);
 
   private final int permanentId;
-  private static final Map<Integer, SquareState> idToEnum;
+  private static final Map<Integer, DigSiteSquareState> idToEnum;
 
-  SquareState(int id) {
+  DigSiteSquareState(int id) {
     permanentId = id;
   }
 
   static {
-    idToEnum = Arrays.stream(SquareState.values())
+    idToEnum = Arrays.stream(DigSiteSquareState.values())
         .collect(Collectors.toMap(
         (e) -> e.permanentId,
         (e) -> e)
     );
   }
   @TypeConverter
-  public static SquareState fromConstantId(int id) {
+  public static DigSiteSquareState fromConstantId(int id) {
     return idToEnum.get(id);
   }
 
   @TypeConverter
-  public static int toConstantId(SquareState state) {
+  public static int toConstantId(DigSiteSquareState state) {
     return state.permanentId;
   }
 }

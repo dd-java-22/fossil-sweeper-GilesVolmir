@@ -15,7 +15,7 @@ import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteGrid;
 import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteSquare;
 import edu.cnm.deepdive.fossilsweeper.model.entity.Fossil;
 import edu.cnm.deepdive.fossilsweeper.model.entity.UserProfile;
-import edu.cnm.deepdive.fossilsweeper.model.type.SquareState;
+import edu.cnm.deepdive.fossilsweeper.model.type.DigSiteSquareState;
 import edu.cnm.deepdive.fossilsweeper.service.FossilSweeperDatabase.Converters;
 import java.time.Instant;
 
@@ -28,7 +28,7 @@ import java.time.Instant;
         DigSiteSquare.class
     },
     version = FossilSweeperDatabase.DATABASE_VERSION)
-@TypeConverters({Converters.class, SquareState.class})
+@TypeConverters({Converters.class, DigSiteSquareState.class})
 public abstract class FossilSweeperDatabase extends RoomDatabase {
 
   static final int DATABASE_VERSION = 1;

@@ -22,7 +22,7 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteCoord;
-import edu.cnm.deepdive.fossilsweeper.model.type.SquareState;
+import edu.cnm.deepdive.fossilsweeper.model.type.DigSiteSquareState;
 import java.time.Instant;
 
 /**
@@ -68,7 +68,7 @@ public class DigSiteSquare {
 
   @NonNull
   @ColumnInfo(name = "state")
-  private SquareState state;
+  private DigSiteSquareState state;
 
   @NonNull
   @ColumnInfo(name = "last_modified")
@@ -188,7 +188,7 @@ public class DigSiteSquare {
    * @return Square state.
    */
   @NonNull
-  public SquareState getState() {
+  public DigSiteSquareState getState() {
     return state;
   }
 
@@ -197,7 +197,7 @@ public class DigSiteSquare {
    *
    * @param state Square state.
    */
-  public void setState(@NonNull SquareState state) {
+  public void setState(@NonNull DigSiteSquareState state) {
     this.state = state;
   }
 

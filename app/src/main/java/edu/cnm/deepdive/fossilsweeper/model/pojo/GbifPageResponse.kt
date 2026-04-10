@@ -13,123 +13,28 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package edu.cnm.deepdive.fossilsweeper.model.pojo;
+package edu.cnm.deepdive.fossilsweeper.model.pojo
 
-import androidx.annotation.Nullable;
-import com.google.gson.annotations.SerializedName;
-import java.util.List;
+import com.google.gson.annotations.SerializedName
 
 /**
  * POJO representing a paginated response from the GBIF API. Contains metadata about pagination and
  * the list of fossil results.
  */
-public class GbifPageResponse {
+data class GbifPageResponse(
 
-  @SerializedName("offset")
-  private int offset;
+    @SerializedName("offset")
+    var offset: Int = 0,
 
-  @SerializedName("limit")
-  private int limit;
+    @SerializedName("limit")
+    var limit: Int = 0,
 
-  @SerializedName("endOfRecords")
-  private boolean endOfRecords;
+    @SerializedName("endOfRecords")
+    var isEndOfRecords: Boolean = false,
 
-  @SerializedName("count")
-  private int count;
+    @SerializedName("count")
+    var count: Int = 0,
 
-  @Nullable
-  @SerializedName("results")
-  private List<GbifFossil> results;
-
-  /**
-   * Gets the offset of this page in the result set.
-   *
-   * @return Offset value.
-   */
-  public int getOffset() {
-    return offset;
-  }
-
-  /**
-   * Sets the offset of this page in the result set.
-   *
-   * @param offset Offset value.
-   */
-  public void setOffset(int offset) {
-    this.offset = offset;
-  }
-
-  /**
-   * Gets the maximum number of results in this page.
-   *
-   * @return Limit value.
-   */
-  public int getLimit() {
-    return limit;
-  }
-
-  /**
-   * Sets the maximum number of results in this page.
-   *
-   * @param limit Limit value.
-   */
-  public void setLimit(int limit) {
-    this.limit = limit;
-  }
-
-  /**
-   * Checks if this is the last page of results.
-   *
-   * @return {@code true} if no more records are available, {@code false} otherwise.
-   */
-  public boolean isEndOfRecords() {
-    return endOfRecords;
-  }
-
-  /**
-   * Sets whether this is the last page of results.
-   *
-   * @param endOfRecords {@code true} if no more records are available.
-   */
-  public void setEndOfRecords(boolean endOfRecords) {
-    this.endOfRecords = endOfRecords;
-  }
-
-  /**
-   * Gets the total count of records matching the query.
-   *
-   * @return Total count.
-   */
-  public int getCount() {
-    return count;
-  }
-
-  /**
-   * Sets the total count of records matching the query.
-   *
-   * @param count Total count.
-   */
-  public void setCount(int count) {
-    this.count = count;
-  }
-
-  /**
-   * Gets the list of fossil results in this page.
-   *
-   * @return List of fossils, or {@code null} if not available.
-   */
-  @Nullable
-  public List<GbifFossil> getResults() {
-    return results;
-  }
-
-  /**
-   * Sets the list of fossil results in this page.
-   *
-   * @param results List of fossils.
-   */
-  public void setResults(@Nullable List<GbifFossil> results) {
-    this.results = results;
-  }
-
-}
+    @SerializedName("results")
+    var results: MutableList<GbifFossil?>? = null,
+)

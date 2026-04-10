@@ -8,9 +8,9 @@
   <action
     android:id="@+id/navigate_to_login_fragment"
     app:destination="@id/login_fragment"
+    app:popUpToInclusive="true"
+    app:popUpTo="@id/nav_graph"
     />
-<!--    app:popUpTo="@id/login_fragment"-->
-<!--    app:popUpToInclusive="true" -->
 
   <fragment
     android:id="@+id/login_fragment"

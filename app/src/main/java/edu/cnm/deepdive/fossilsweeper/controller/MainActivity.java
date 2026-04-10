@@ -6,10 +6,15 @@ import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import dagger.hilt.android.AndroidEntryPoint;
 import edu.cnm.deepdive.fossilsweeper.R;
 import edu.cnm.deepdive.fossilsweeper.databinding.ActivityMainBinding;
@@ -17,7 +22,9 @@ import edu.cnm.deepdive.fossilsweeper.databinding.ActivityMainBinding;
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
-  ActivityMainBinding binding;
+  private ActivityMainBinding binding;
+  private NavController navController;
+  private AppBarConfiguration barConfig;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     binding = ActivityMainBinding.inflate(getLayoutInflater());
     EdgeToEdge.enable(this);
     ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), MainActivity::adjustInsets);
+    setupNavigation();
     setContentView(binding.getRoot());
   }
 
@@ -35,6 +43,28 @@ public class MainActivity extends AppCompatActivity {
     params.setMargins(bounds.left, bounds.top, bounds.right, bounds.bottom);
     view.setLayoutParams(params);
     return WindowInsetsCompat.CONSUMED;
+  }
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    return NavigationUI.navigateUp(navController, barConfig);
+  }
+
+  private void setupNavigation() {
+    barConfig = new AppBarConfiguration.Builder(R.id.main_fragment).build();
+    NavHostFragment host = binding.navHostFragmentContainer.getFragment();
+    navController = host.getNavController();
+    navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+      ActionBar bar = getSupportActionBar();
+      if (bar != null) {
+        if (destination.getId() == R.id.login_fragment) {
+          bar.hide();
+        } else {
+          bar.show();
+        }
+      }
+    });
+    NavigationUI.setupActionBarWithNavController(this, navController, barConfig);
   }
 
 }

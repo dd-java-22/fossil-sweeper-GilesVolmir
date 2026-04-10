@@ -11,17 +11,20 @@ import java.util.stream.Collectors;
 
 public class DigSiteGridWithSquares extends DigSiteGrid {
 
-  @Relation(entity = DigSiteSquare.class, parentColumn = "id", entityColumn = "belongingGridId")
+  @Relation(
+      entity = DigSiteSquare.class,
+      parentColumn = "dig_site_grid_id",
+      entityColumn = "belonging_grid_id"
+  )
   private List<DigSiteSquare> squares;
 
-  private Map<DigSiteCoord, DigSiteSquare> gridSquares;
+  public void setSquares(List<DigSiteSquare> squares) {
+    this.squares = squares;
+  }
 
   public Map<DigSiteCoord, DigSiteSquare> getGridSquares() {
-    if (gridSquares == null) {
-      gridSquares = squares.stream()
-          .collect(Collectors.toMap(DigSiteSquare::getCoord, Function.identity()));
-    }
-    return gridSquares;
+    return squares.stream()
+        .collect(Collectors.toMap(DigSiteSquare::getCoord, Function.identity()));
   }
 
   public Set<DigSiteCoord> getMooreNeighbors(DigSiteCoord coord) {

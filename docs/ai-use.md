@@ -42,3 +42,9 @@ order: 90
 
 + Had Claude write me an SQL query to get any fossils that were not assigned to a collected 
   fossil yet. it was just a left join but I forgot how they worked and it got it for me.
+
+## Milestone 3
+
++ Frequent use of IntelliJ Idea's code completion.
+
++ Gemini helped me figure out chipsGroup and custom selectable cards to use as chips.

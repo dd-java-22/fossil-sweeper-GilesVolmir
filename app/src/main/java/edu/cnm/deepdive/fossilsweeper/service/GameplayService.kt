@@ -8,11 +8,12 @@ interface GameplayService {
 
     fun startNewDig(width: Int, height: Int, density: Int, userId: Long): Long
 
-    fun digSquare(square: DigSiteSquare)
+    fun digSquare(boardMap: Map<DigSiteCoord, DigSiteSquare>, location: DigSiteCoord)
 
     fun toggleFenceSquare(square: DigSiteSquare)
 
     fun extractSquare(square: DigSiteSquare)
 
-    fun scanSquare(square: DigSiteSquare)
+    fun scanSquare(boardMap: Map<DigSiteCoord, DigSiteSquare>, location: DigSiteCoord)
+
 }

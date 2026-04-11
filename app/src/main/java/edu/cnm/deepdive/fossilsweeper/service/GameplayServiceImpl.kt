@@ -4,12 +4,10 @@ import android.util.Log
 import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteGrid
 import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteSquare
 import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteCoord
-import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteGridWithSquares
 import edu.cnm.deepdive.fossilsweeper.model.type.DigSiteSquareState
 import edu.cnm.deepdive.fossilsweeper.service.respository.DigSiteGridRepository
 import edu.cnm.deepdive.fossilsweeper.service.respository.DigSiteSquareRepository
 import jakarta.inject.Inject
-import kotlinx.coroutines.future.await
 import java.util.concurrent.CompletableFuture
 import java.util.stream.Collectors
 import java.util.stream.IntStream
@@ -69,8 +67,8 @@ class GameplayServiceImpl @Inject constructor(
         return completableDigSiteId.join()
     }
 
-    override fun digSquare(boardMap: DigSiteGridWithSquares, location: DigSiteCoord) {
-        val square = boardMap.gridSquares[location] ?: return
+    override fun digSquare(boardMap: Map<DigSiteCoord, DigSiteSquare>, location: DigSiteCoord) {
+        val square = boardMap[location] ?: return
         if (square.state == DigSiteSquareState.UNTOUCHED) {
             square.state = DigSiteSquareState.DUG
             digSiteSquareRepository.update(square)
@@ -78,19 +76,51 @@ class GameplayServiceImpl @Inject constructor(
                     Log.e(TAG, "Error updating DigSiteSquare", it)
                     null
                 }
-            // TODO: CASCADE DIG if mooreNeighbors is zero.
+            if (square.mooreNeighborFossils == 0) {
+                location.neighbors
+                    .filter { boardMap.containsKey(it) }
+                    .forEach { digSquare(boardMap, it) }
+            }
         }
     }
 
     override fun toggleFenceSquare(square: DigSiteSquare) {
-        TODO("Not yet implemented")
+        if (square.state == DigSiteSquareState.UNTOUCHED) {
+            square.state = DigSiteSquareState.FENCED
+            digSiteSquareRepository.update(square)
+                .exceptionally {
+                    Log.e(TAG, "Error updating DigSiteSquare", it)
+                    null
+                }
+        } else if (square.state == DigSiteSquareState.FENCED) {
+            square.state = DigSiteSquareState.UNTOUCHED
+            digSiteSquareRepository.update(square)
+                .exceptionally {
+                    Log.e(TAG, "Error updating DigSiteSquare", it)
+                }
+        }
     }
 
     override fun extractSquare(square: DigSiteSquare) {
-        TODO("Not yet implemented")
+        if (square.state == DigSiteSquareState.UNTOUCHED) {
+            square.state = DigSiteSquareState.EXTRACTED
+            digSiteSquareRepository.update(square)
+                .exceptionally {
+                    Log.e(TAG, "Error updating DigSiteSquare", it)
+                    null
+                }
+        }
     }
 
-    override fun scanSquare(square: DigSiteSquare) {
-        TODO("Not yet implemented")
+    override fun scanSquare(boardMap: Map<DigSiteCoord, DigSiteSquare>, location: DigSiteCoord) {
+        val square = boardMap[location] ?: return
+
+        if (square.state == DigSiteSquareState.UNTOUCHED || square.state == DigSiteSquareState.FENCED) {
+            if (square.isHasFossil) {
+                extractSquare(square)
+            } else {
+                digSquare(boardMap, location)
+            }
+        }
     }
 }

@@ -16,10 +16,10 @@ import java.util.Map;
 
 public class DigSiteView extends View {
 
+  private final Context context;
   private int xCells;
   private int yCells;
   private int cellDim;
-  private Context context;
   private Map<DigSiteCoord, DigSiteSquare> gridSquares;
 
   public DigSiteView(Context context) {
@@ -27,25 +27,26 @@ public class DigSiteView extends View {
     this.context = context;
   }
 
-  public DigSiteView(Context context,
-      @Nullable @org.jspecify.annotations.Nullable AttributeSet attrs) {
+  public DigSiteView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
     this.context = context;
 
   }
 
-  public DigSiteView(Context context,
-      @Nullable @org.jspecify.annotations.Nullable AttributeSet attrs, int defStyleAttr) {
+  public DigSiteView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     this.context = context;
 
   }
 
-  public DigSiteView(Context context,
-      @Nullable @org.jspecify.annotations.Nullable AttributeSet attrs, int defStyleAttr,
+  public DigSiteView(Context context, @Nullable AttributeSet attrs, int defStyleAttr,
       int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
     this.context = context;
+  }
+
+  public void setGridSquares(Map<DigSiteCoord, DigSiteSquare> gridSquares) {
+    this.gridSquares = gridSquares;
 
   }
 
@@ -53,10 +54,10 @@ public class DigSiteView extends View {
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     int suggestedW = getSuggestedMinimumWidth();
     int suggestedH = getSuggestedMinimumHeight();
-    int width =
-        resolveSizeAndState(getPaddingLeft() + getPaddingRight() + suggestedW, widthMeasureSpec, 0);
-    int height =
-        resolveSizeAndState(getPaddingTop() + getPaddingBottom() + suggestedH, heightMeasureSpec, 0);
+    int width = resolveSizeAndState(getPaddingLeft() + getPaddingRight() + suggestedW,
+        widthMeasureSpec, 0);
+    int height = resolveSizeAndState(getPaddingTop() + getPaddingBottom() + suggestedH,
+        heightMeasureSpec, 0);
 
     int heightFromWidth = width * yCells / xCells;
     int widthFromHeight = height * xCells / yCells;
@@ -71,7 +72,7 @@ public class DigSiteView extends View {
   }
 
   @Override
-  protected void onDraw(@NonNull @org.jspecify.annotations.NonNull Canvas canvas) {
+  protected void onDraw(@NonNull Canvas canvas) {
     super.onDraw(canvas);
     gridSquares.forEach((key, cellData) -> {
       Drawable tile = cellToDrawableTile(cellData);

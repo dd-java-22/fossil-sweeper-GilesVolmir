@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import com.google.android.material.card.MaterialCardView;
 import dagger.hilt.android.AndroidEntryPoint;
 import edu.cnm.deepdive.fossilsweeper.databinding.FragmentDigSiteBinding;
 import edu.cnm.deepdive.fossilsweeper.databinding.LayoutToolItemBinding;
@@ -33,11 +33,11 @@ public class DigSiteFragment extends Fragment {
     gameplayViewModel = new ViewModelProvider(requireActivity()).get(GameplayViewModel.class);
     for (ToolType tool : ToolType.values()) {
       Drawable icon = getResources().getDrawable(tool.getImageId(), null);
-      LayoutToolItemBinding toolView = LayoutToolItemBinding.inflate(inflater, binding.digToolBar, false);
-      toolView.toolImage.setImageDrawable(icon);
-      toolView.toolName.setText(tool.getToolName());
-      toolView.getRoot().setTag(tool);
-      binding.digToolBar.addView(toolView.getRoot());
+      RadioButton toolButton = (RadioButton) LayoutToolItemBinding.inflate(inflater, binding.digToolBar, false).getRoot();
+      toolButton.setText(tool.getToolName());
+      toolButton.setCompoundDrawablesRelativeWithIntrinsicBounds(null, icon, null, null);
+      toolButton.setTag(tool);
+      binding.digToolBar.addView(toolButton);
     }
     binding.digToolBar.setOnCheckedChangeListener(
         (group, checkedId) -> {

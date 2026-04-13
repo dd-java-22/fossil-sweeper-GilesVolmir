@@ -1,6 +1,6 @@
 ---
 title: Technical requirements & dependencies
-description: "As-is state of the application at the end of bootcamp."
+description: "Requirements and dependencies used in the project."
 order: 60
 ---
 

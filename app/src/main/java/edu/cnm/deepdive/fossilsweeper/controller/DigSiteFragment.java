@@ -41,6 +41,7 @@ public class DigSiteFragment extends Fragment {
       toolButton.setCompoundDrawablesRelativeWithIntrinsicBounds(null, icon, null, null);
       toolButton.setTag(tool);
       binding.digToolBar.addView(toolButton);
+      binding.digToolBar.check(toolButton.getId());
     }
     binding.digToolBar.setOnCheckedChangeListener(
         (group, checkedId) -> {

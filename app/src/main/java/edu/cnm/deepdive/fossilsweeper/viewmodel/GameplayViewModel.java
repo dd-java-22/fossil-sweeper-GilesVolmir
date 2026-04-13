@@ -3,6 +3,7 @@ package edu.cnm.deepdive.fossilsweeper.viewmodel;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.preference.PreferenceManager;
@@ -31,7 +32,7 @@ public class GameplayViewModel extends ViewModel {
   private final DigSiteGridRepository digSiteGridRepository;
   private final Context context;
   private final SharedPreferences prefs;
-  private ToolType currentTool;
+  private ToolType currentTool = ToolType.DIG;
 
   @Inject
   public GameplayViewModel(GameplayService gameplayService,
@@ -69,6 +70,7 @@ public class GameplayViewModel extends ViewModel {
   }
 
   public void handleTapWithCurrentTool(DigSiteCoord coord) {
+    Log.d("GameplayViewModel", "Handling with tool: " + currentTool + " at coord: " + coord);
     DigSiteGridWithSquares game = digSiteGridWithSquares.getValue();
     if (game == null) {
       return;

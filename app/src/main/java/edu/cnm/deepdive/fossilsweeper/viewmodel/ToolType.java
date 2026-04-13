@@ -5,9 +5,9 @@ import edu.cnm.deepdive.fossilsweeper.R;
 public enum ToolType {
   SCAN("Scan", R.drawable.radar_sweep),
   EXTRACT("Extract", R.drawable.large_paint_brush),
-  FENCE("Dig", R.drawable.dig_dug),
-  MOVE("Fence", R.drawable.packed_planks),
-  DIG("Move", R.drawable.tread);
+  DIG("Dig", R.drawable.dig_dug),
+  FENCE("Fence", R.drawable.packed_planks),
+  MOVE("Move", R.drawable.tread);
 
   private final String toolName;
   private final int imageId;

@@ -55,4 +55,4 @@ order: 90
 + Claude implemented the click listener handling in DigSiteView from a description of the kind of listener I wanted.
 
 + added colored background to RadioGroup that's not visible yet beyond the image and messed up 
-  the text.
+  the text. tried to add tint to the vector drawables but it's not doing anything at all. 

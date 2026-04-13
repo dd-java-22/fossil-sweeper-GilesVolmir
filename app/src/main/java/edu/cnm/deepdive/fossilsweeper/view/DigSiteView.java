@@ -100,6 +100,7 @@ public class DigSiteView extends View {
         Drawable tile = cellToDrawableTile(cellData);
         tile.setBounds(gridCoordinateToBounds(key));
         tile.draw(canvas);
+
       });
     }
   }

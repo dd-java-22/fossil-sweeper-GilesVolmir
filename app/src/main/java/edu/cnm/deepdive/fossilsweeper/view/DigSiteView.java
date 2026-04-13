@@ -53,6 +53,8 @@ public class DigSiteView extends View {
       xCells = xCellsNew;
       yCells = yCellsNew;
       requestLayout();
+    } else {
+      postInvalidate();
     }
   }
 

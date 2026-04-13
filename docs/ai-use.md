@@ -49,4 +49,7 @@ order: 90
 
 + Gemini helped me figure out chipsGroup and custom selectable cards to use as chips.
 
-+ Claude helped make that into a RadioGroup so it works better
++ Claude helped make that into a RadioGroup so it's now ugly and hard-coded size but actually 
+  works even though you can't tell which is selected.
+
++ 

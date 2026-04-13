@@ -9,12 +9,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import dagger.hilt.android.AndroidEntryPoint;
 import edu.cnm.deepdive.fossilsweeper.databinding.FragmentDigSiteBinding;
 import edu.cnm.deepdive.fossilsweeper.databinding.LayoutToolItemBinding;
+import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteGridWithSquares;
 import edu.cnm.deepdive.fossilsweeper.viewmodel.GameplayViewModel;
 import edu.cnm.deepdive.fossilsweeper.viewmodel.ToolType;
 
@@ -23,14 +25,13 @@ public class DigSiteFragment extends Fragment {
 
   private FragmentDigSiteBinding binding;
   private GameplayViewModel gameplayViewModel;
-//  private final LiveData<DigSiteGridWithSquares> digSiteGridWithSquares;
+  private LiveData<DigSiteGridWithSquares> digSiteGridWithSquares;
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     binding = FragmentDigSiteBinding.inflate(inflater, container, false);
-    gameplayViewModel = new ViewModelProvider(requireActivity()).get(GameplayViewModel.class);
     for (ToolType tool : ToolType.values()) {
       Drawable icon = getResources().getDrawable(tool.getImageId(), null);
       RadioButton toolButton = (RadioButton) LayoutToolItemBinding.inflate(inflater, binding.digToolBar, false).getRoot();
@@ -56,6 +57,8 @@ public class DigSiteFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    gameplayViewModel = new ViewModelProvider(requireActivity()).get(GameplayViewModel.class);
+    digSiteGridWithSquares = gameplayViewModel.getGameLivedata();
     // TODO: Set up ViewModel and observers
   }
 

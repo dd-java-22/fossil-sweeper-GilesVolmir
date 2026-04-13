@@ -85,6 +85,15 @@ public interface DigSiteGridDao {
   int updateRemainingBrushes(long id, int remainingBrushes);
 
   /**
+   * Marks a game as ended by setting the end_time to the current timestamp.
+   *
+   * @param id Grid ID.
+   * @return Number of rows updated (should be 1).
+   */
+  @Query("UPDATE dig_site_grid SET end_time = CURRENT_TIMESTAMP WHERE dig_site_grid_id = :id")
+  int endGame(long id);
+
+  /**
    * Deletes a dig site grid from the database. Associated squares will be cascade deleted.
    *
    * @param digSiteGrid Dig site grid to delete.

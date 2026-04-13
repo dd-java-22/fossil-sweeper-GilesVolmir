@@ -9,6 +9,7 @@ import edu.cnm.deepdive.fossilsweeper.service.respository.DigSiteGridRepository
 import edu.cnm.deepdive.fossilsweeper.service.respository.DigSiteSquareRepository
 import edu.cnm.deepdive.fossilsweeper.service.respository.UserProfileRepository
 import jakarta.inject.Inject
+import kotlinx.coroutines.future.await
 import java.util.concurrent.CompletableFuture
 import java.util.stream.Collectors
 import java.util.stream.IntStream
@@ -110,7 +111,16 @@ class GameplayServiceImpl @Inject constructor(
                 .thenCompose {
                     // Consume a brush
                     if (currentBrushes > 0) {
-                        digSiteGridRepository.updateRemainingBrushes(gridId, currentBrushes - 1)
+                        val newBrushCount = currentBrushes - 1
+                        digSiteGridRepository.updateRemainingBrushes(gridId, newBrushCount)
+                            .thenCompose {
+                                // End game if brushes reach zero
+                                if (newBrushCount == 0) {
+                                    digSiteGridRepository.endGame(gridId)
+                                } else {
+                                    CompletableFuture.completedFuture(0)
+                                }
+                            }
                     } else {
                         CompletableFuture.completedFuture(0)
                     }
@@ -122,7 +132,14 @@ class GameplayServiceImpl @Inject constructor(
         }
     }
 
-    override fun scanSquare(boardMap: Map<DigSiteCoord, DigSiteSquare>, location: DigSiteCoord, userId: Long, gridId: Long, currentBrushes: Int, currentScanners: Int) {
+    override fun scanSquare(
+        boardMap: Map<DigSiteCoord, DigSiteSquare>,
+        location: DigSiteCoord,
+        userId: Long,
+        gridId: Long,
+        currentBrushes: Int,
+        currentScanners: Int
+    ) {
         val square = boardMap[location] ?: return
 
         if (currentScanners < 1) {
@@ -133,21 +150,15 @@ class GameplayServiceImpl @Inject constructor(
         if (square.state == DigSiteSquareState.UNTOUCHED || square.state == DigSiteSquareState.FENCED) {
             // Consume a scanner and process if have enough resource.
             userProfileRepository.consumeScanners(1, userId)
-                .thenAccept { scannersConsumed ->
-                    if (scannersConsumed > 0) {
-                        if (square.isHasFossil) {
-                            extractSquare(square, gridId, currentBrushes)
-                        } else {
-                            digSquare(boardMap, location)
-                        }
-                    } else {
-                        Log.w(TAG, "No scanners available to consume")
-                    }
-                }
                 .exceptionally {
                     Log.e(TAG, "Error consuming scanners", it)
                     null
                 }
+            if (square.isHasFossil) {
+                extractSquare(square, gridId, currentBrushes)
+            } else {
+                digSquare(boardMap, location)
+            }
         }
     }
 }

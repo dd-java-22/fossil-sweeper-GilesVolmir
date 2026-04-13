@@ -23,6 +23,8 @@ public interface DigSiteGridRepository {
 
   CompletableFuture<Integer> updateRemainingBrushes(long gridId, int remainingBrushes);
 
+  CompletableFuture<Integer> endGame(long gridId);
+
   CompletableFuture<Integer> delete(DigSiteGrid digSiteGrid);
 
   CompletableFuture<DigSiteSquare> getSquareByCoordinates(long gridId, int x, int y);

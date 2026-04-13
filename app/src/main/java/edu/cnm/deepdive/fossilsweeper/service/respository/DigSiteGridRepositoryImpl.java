@@ -68,6 +68,11 @@ public class DigSiteGridRepositoryImpl implements DigSiteGridRepository {
   }
 
   @Override
+  public CompletableFuture<Integer> endGame(long gridId) {
+    return CompletableFuture.supplyAsync(() -> gridDao.endGame(gridId));
+  }
+
+  @Override
   public CompletableFuture<Integer> delete(DigSiteGrid digSiteGrid) {
     return CompletableFuture.supplyAsync(() -> gridDao.delete(digSiteGrid));
   }

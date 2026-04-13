@@ -53,3 +53,6 @@ order: 90
   works even though you can't tell which is selected.
 
 + Claude implemented the click listener handling in DigSiteView from a description of the kind of listener I wanted.
+
++ added colored background to RadioGroup that's not visible yet beyond the image and messed up 
+  the text.

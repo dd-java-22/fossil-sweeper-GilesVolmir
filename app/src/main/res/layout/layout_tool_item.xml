@@ -12,6 +12,7 @@
   android:background="@drawable/tool_button_background"
   android:padding="8dp"
   android:drawablePadding="4dp"
+  android:drawableTint="@color/tool_icon_tint"
   tools:text="Brush"
   tools:drawableTop="@drawable/dig_dug"
   />

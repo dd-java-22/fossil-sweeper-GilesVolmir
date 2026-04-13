@@ -30,9 +30,12 @@ public class GameplayViewModel extends ViewModel {
   private final UserProfile currentUser;
   private LiveData<DigSiteGridWithSquares> digSiteGridWithSquares;
   private final DigSiteGridRepository digSiteGridRepository;
+  private final UserProfileRepository userProfileRepository;
   private final Context context;
   private final SharedPreferences prefs;
   private ToolType currentTool = ToolType.DIG;
+  private LiveData<Integer> remainingBrushes;
+  private LiveData<Integer> scannerCount;
 
   @Inject
   public GameplayViewModel(GameplayService gameplayService,
@@ -42,6 +45,7 @@ public class GameplayViewModel extends ViewModel {
       @ApplicationContext Context context) {
     this.gameplayService = gameplayService;
     this.digSiteGridRepository = digSiteGridRepository;
+    this.userProfileRepository = userRepo;
     this.context = context;
     currentUser = userRepo.getByOauthKey(authRepo.getLastOauthKey()).join();
     prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -63,6 +67,11 @@ public class GameplayViewModel extends ViewModel {
           currentUser.getId());
       digSiteGridWithSquares = digSiteGridRepository.getDigSiteGridWithSquaresById(newGameId);
     }
+    remainingBrushes = Transformations.map(digSiteGridWithSquares,
+        DigSiteGridWithSquares::getRemainingBrushes);
+    scannerCount = Transformations.map(
+        userProfileRepository.getByOauthKey(currentUser.getOauthKey()),
+        UserProfile::getScannerItems);
   }
 
   public LiveData<DigSiteGridWithSquares> getGameLivedata() {
@@ -90,5 +99,13 @@ public class GameplayViewModel extends ViewModel {
 
   public void setCurrentTool(ToolType currentTool) {
     this.currentTool = currentTool;
+  }
+
+  public LiveData<Integer> getRemainingBrushes() {
+    return remainingBrushes;
+  }
+
+  public LiveData<Integer> getScannerCount() {
+    return scannerCount;
   }
 }

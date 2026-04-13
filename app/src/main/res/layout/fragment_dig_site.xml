@@ -26,6 +26,45 @@
 
   </HorizontalScrollView>
 
+  <LinearLayout
+    android:id="@+id/stats_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/half_static_spacing"
+    app:layout_constraintTop_toBottomOf="@id/dig_tool_bar_container"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <TextView
+      android:id="@+id/brushes_label"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Brushes: "
+      android:textStyle="bold"/>
+
+    <TextView
+      android:id="@+id/brushes_count"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/half_static_spacing"
+      android:text="0"/>
+
+    <TextView
+      android:id="@+id/scanners_label"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/half_static_spacing"
+      android:text="Scanners: "
+      android:textStyle="bold"/>
+
+    <TextView
+      android:id="@+id/scanners_count"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="0"/>
+
+  </LinearLayout>
 
   <edu.cnm.deepdive.fossilsweeper.view.DigSiteView
     android:id="@+id/dig_site"
@@ -33,7 +72,7 @@
     android:layout_height="0dp"
     android:clickable="true"
     android:layout_marginTop="@dimen/half_static_spacing"
-    app:layout_constraintTop_toBottomOf="@id/dig_tool_bar_container"
+    app:layout_constraintTop_toBottomOf="@id/stats_container"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"/>

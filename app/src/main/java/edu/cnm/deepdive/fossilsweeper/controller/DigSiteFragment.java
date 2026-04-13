@@ -73,13 +73,18 @@ public class DigSiteFragment extends Fragment {
         .observe(getViewLifecycleOwner(), (gridSquares) ->
             binding.digSite.setGridSquares(gridSquares)
         );
-    Transformations.distinctUntilChanged(
-        Transformations.map(
-            digSiteGridWithSquares, DigSiteGridWithSquares::getRemainingBrushes))
-        .observe(getViewLifecycleOwner(), (remainingBrushes) ->
-            Log.d("DigSiteFragment", "Remaining brushes: " + remainingBrushes)
-            // TODO: 4/13/2026 actually set some view on the UI once it exists.
-        );
+    gameplayViewModel.getRemainingBrushes()
+        .observe(getViewLifecycleOwner(), (remainingBrushes) -> {
+          if (remainingBrushes != null) {
+            binding.brushesCount.setText(String.valueOf(remainingBrushes));
+          }
+        });
+    gameplayViewModel.getScannerCount()
+        .observe(getViewLifecycleOwner(), (scannerCount) -> {
+          if (scannerCount != null) {
+            binding.scannersCount.setText(String.valueOf(scannerCount));
+          }
+        });
   }
 
   @Override

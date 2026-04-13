@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -77,6 +78,9 @@ public class DigSiteFragment extends Fragment {
         .observe(getViewLifecycleOwner(), (remainingBrushes) -> {
           if (remainingBrushes != null) {
             binding.brushesCount.setText(String.valueOf(remainingBrushes));
+            if (remainingBrushes <= 0) {
+              gameOver();
+            }
           }
         });
     gameplayViewModel.getScannerCount()
@@ -91,5 +95,10 @@ public class DigSiteFragment extends Fragment {
   public void onDestroyView() {
     binding = null;
     super.onDestroyView();
+  }
+
+  private void gameOver() {
+    Toast.makeText(requireContext(), "Game Over!", Toast.LENGTH_SHORT).show();
+    binding.digSite.setEnabled(false);
   }
 }

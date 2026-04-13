@@ -61,6 +61,7 @@ public class DigSiteFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
     gameplayViewModel = new ViewModelProvider(requireActivity()).get(GameplayViewModel.class);
     digSiteGridWithSquares = gameplayViewModel.getGameLivedata();
+    binding.digSite.setOnCellClickListener(gameplayViewModel::handleTapWithCurrentTool);
     Transformations.distinctUntilChanged(
         Transformations.map(
             digSiteGridWithSquares, DigSiteGridWithSquares::getGridSquares))

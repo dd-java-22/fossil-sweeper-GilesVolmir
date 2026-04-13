@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteSquare;
 import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteCoord;
 import edu.cnm.deepdive.fossilsweeper.model.type.DigSiteSquareState;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class DigSiteView extends View {
 
@@ -22,6 +24,7 @@ public class DigSiteView extends View {
   private int yCells = 1;
   private int cellDim;
   private Map<DigSiteCoord, DigSiteSquare> gridSquares;
+  private Consumer<DigSiteCoord> onCellClickListener;
 
   public DigSiteView(Context context) {
     super(context);
@@ -59,6 +62,10 @@ public class DigSiteView extends View {
     }
   }
 
+  public void setOnCellClickListener(Consumer<DigSiteCoord> listener) {
+    this.onCellClickListener = listener;
+  }
+
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     if (gridSquares == null) {
@@ -94,6 +101,20 @@ public class DigSiteView extends View {
         tile.draw(canvas);
       });
     }
+  }
+
+  @Override
+  public boolean onTouchEvent(MotionEvent event) {
+    if (event.getAction() == MotionEvent.ACTION_UP) {
+      if (gridSquares != null && onCellClickListener != null) {
+        DigSiteCoord coord = pixelToGridCoordinate((int) event.getX(), (int) event.getY());
+        if (gridSquares.containsKey(coord)) {
+          onCellClickListener.accept(coord);
+          return true;
+        }
+      }
+    }
+    return super.onTouchEvent(event);
   }
 
   private DigSiteCoord pixelToGridCoordinate(int x, int y) {

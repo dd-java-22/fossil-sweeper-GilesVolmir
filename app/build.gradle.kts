@@ -19,6 +19,7 @@ import java.util.*
 
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.dokka)
     alias(libs.plugins.hilt)
     alias(libs.plugins.navigation.safeargs)
     alias(libs.plugins.schema.parser)

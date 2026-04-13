@@ -16,4 +16,14 @@
   <string name="unknown_fossil">Unknown Fossil</string>
   <string name="fossil_image_description">Fossil photograph</string>
   <string name="test_fossil_dialog_button_text">Test Fossil Dialog</string>
+  <string name="board_width_pref_key">board_width_pref</string>
+  <string name="board_height_pref_key">board_height_pref</string>
+  <string name="board_width_pref_title">Dig Site Game Board Width</string>
+  <string name="board_height_pref_title">Dig Site Game Board Height</string>
+  <string name="board_width_pref_summary">Number of squares across in your digsite.</string>
+  <string name="board_height_pref_summary">number of squares tall in your digsite</string>
+  <string name="board_fossil_density_pref_key">board_fossil_density_pref</string>
+  <string name="board_fossil_density_pref_title">Fossil Density</string>
+  <string name="board_fossil_density_pref_summary">Percent of squares that have a fossil!</string>
+  <string name="settings_fragment_title">Settings</string>
 </resources>

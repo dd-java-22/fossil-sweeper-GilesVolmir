@@ -8,8 +8,9 @@
   <action
     android:id="@+id/navigate_to_login_fragment"
     app:destination="@id/login_fragment"
-    app:popUpTo="@id/login_fragment"
-    app:popUpToInclusive="true" />
+    app:popUpToInclusive="true"
+    app:popUpTo="@id/nav_graph"
+    />
 
   <fragment
     android:id="@+id/login_fragment"
@@ -37,6 +38,21 @@
     <action
       android:id="@+id/navigate_to_fossil_gallery_fragment"
       app:destination="@id/fossil_gallery_fragment" />
+
+    <action
+      android:id="@+id/navigate_to_settings_fragment"
+      app:destination="@id/settings_fragment" />
+  </fragment>
+
+  <fragment
+    android:id="@+id/settings_fragment"
+    android:name="edu.cnm.deepdive.fossilsweeper.controller.SettingsFragment"
+    android:label="@string/settings_fragment_title"
+    tools:layout="@xml/preferences">
+
+    <action
+      android:id="@+id/navigate_to_main_fragment"
+      app:destination="@id/main_fragment" />
   </fragment>
 
   <fragment
@@ -78,7 +94,8 @@
     <argument
       android:name="fossilId"
       app:argType="long"
-      android:defaultValue="-1L" />
+      />
+<!--      android:defaultValue="-1L"-->
   </dialog>
 
 </navigation>

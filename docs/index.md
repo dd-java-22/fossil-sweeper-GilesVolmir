@@ -32,7 +32,7 @@ Fossil themed minesweeper with a card collecting element and a small window into
 
 + Paleontology Educator
 
-    As a science teacher, I introduce this game to my students to get them familiar with real-world archaeology data.
+    As a science teacher, I introduce this game to my students to get them familiar with real-world paleontology data.
 
 
 ## Functionality
@@ -49,7 +49,7 @@ Every time you successfully excavate a fossil, you are shown a fossil card from 
 + Fossils acquired—including potential fossils to fill in info once available.
 + Prefetched fossils to be acquired later
 + In-progress game
-+ inventory of long-term power ups
++ inventory of long-term power ups (Scanner Item only for now)
 
 
 ## Device/external services
@@ -62,9 +62,8 @@ Every time you successfully excavate a fossil, you are shown a fossil card from 
       be blank until it's able to use the database to fill them in.
     + GBIF (Global Biodiversity Information Facility)
       + [GBIF API reference](https://techdocs.gbif.org/en/openapi/)
-    + iDigBio (Integrated Digitized Biocollections) 
-      + [iDigBio APIs homepage](https://www.idigbio.org/wiki/index.php/IDigBio_API)
-      + [iDigBio Search API](https://github.com/idigbio/idigbio-search-api/wiki)
+      + GBIF proxy service is implemented and available when this feature is added.
+
 
 ## Stretch goals and possible enhancements 
 

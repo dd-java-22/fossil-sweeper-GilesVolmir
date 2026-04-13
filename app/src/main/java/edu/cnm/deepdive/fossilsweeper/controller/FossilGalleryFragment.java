@@ -11,6 +11,11 @@ import androidx.navigation.Navigation;
 import dagger.hilt.android.AndroidEntryPoint;
 import edu.cnm.deepdive.fossilsweeper.databinding.FragmentFossilGalleryBinding;
 
+/**
+ * !!! Work in progress !!!
+ * Fragment displaying a gallery of collected fossils. Allows users to browse their fossil
+ * collection and view detailed information about individual specimens.
+ */
 @AndroidEntryPoint
 public class FossilGalleryFragment extends Fragment {
 
@@ -28,7 +33,7 @@ public class FossilGalleryFragment extends Fragment {
     // Set up test button for fossil dialog (with example fossil ID)
     binding.testFossilDialogButton.setOnClickListener(v ->
         Navigation.findNavController(binding.getRoot())
-            .navigate(FossilGalleryFragmentDirections.navigateToFossilViewDialog()));
+            .navigate(FossilGalleryFragmentDirections.navigateToFossilViewDialog(2L)));
     return binding.getRoot();
   }
 

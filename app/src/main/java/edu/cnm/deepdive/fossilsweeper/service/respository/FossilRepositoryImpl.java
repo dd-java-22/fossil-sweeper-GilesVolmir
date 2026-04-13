@@ -7,10 +7,19 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Implementation of {@link FossilRepository} that delegates to the corresponding DAO for database
+ * operations.
+ */
 public class FossilRepositoryImpl implements FossilRepository {
 
   private final FossilDao fossilDao;
 
+  /**
+   * Constructs a FossilRepositoryImpl with the specified DAO.
+   *
+   * @param fossilDao DAO for database operations.
+   */
   @Inject
   FossilRepositoryImpl(FossilDao fossilDao) {
     this.fossilDao = fossilDao;

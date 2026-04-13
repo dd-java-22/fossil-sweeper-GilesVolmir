@@ -8,6 +8,8 @@ public interface UserProfileRepository {
 
   CompletableFuture<UserProfile> getByOauthKey(String key);
 
+  LiveData<UserProfile> getLiveByOauthKey(String key);
+
   CompletableFuture<UserProfile> getByUserId(long userId);
 
   CompletableFuture<UserProfile> insert(UserProfile userProfile);

@@ -1,0 +1,10 @@
+edu.cnm.deepdive.fossilsweeper
+edu.cnm.deepdive.fossilsweeper.controller
+edu.cnm.deepdive.fossilsweeper.model.dao
+edu.cnm.deepdive.fossilsweeper.model.entity
+edu.cnm.deepdive.fossilsweeper.model.pojo
+edu.cnm.deepdive.fossilsweeper.model.type
+edu.cnm.deepdive.fossilsweeper.service
+edu.cnm.deepdive.fossilsweeper.service.respository
+edu.cnm.deepdive.fossilsweeper.view
+edu.cnm.deepdive.fossilsweeper.viewmodel

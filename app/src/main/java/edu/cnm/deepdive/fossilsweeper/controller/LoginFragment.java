@@ -16,6 +16,10 @@ import edu.cnm.deepdive.fossilsweeper.R;
 import edu.cnm.deepdive.fossilsweeper.databinding.FragmentLoginBinding;
 import edu.cnm.deepdive.fossilsweeper.viewmodel.LoginViewModel;
 
+/**
+ * Fragment for handling user authentication via Google Sign-In. Observes authentication state
+ * changes and navigates to the main fragment upon successful login.
+ */
 @AndroidEntryPoint
 public class LoginFragment extends Fragment {
 

@@ -3,4 +3,5 @@
   <dimen name="half_static_spacing">8dp</dimen>
   <dimen name="title_text_size">24sp</dimen>
   <dimen name="stats_text_size">16</dimen>
+  <dimen name="dig_toolbar_spacing">4dp</dimen>
 </resources>

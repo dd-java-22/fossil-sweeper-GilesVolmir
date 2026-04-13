@@ -52,11 +52,14 @@ public class LoginViewModel extends ViewModel {
   }
 
   public void signOut() {
+    authenticationState.postValue(AuthenticationState.UNAUTHENTICATED);
     authRepository.signOut()
         .whenComplete((result, throwable) -> {
           if (throwable != null) {
             Log.e(TAG, "Sign-out failed", throwable);
+            authenticationState.postValue(AuthenticationState.ERROR);
           } else {
+            Log.d(TAG, "Sign-out successful");
             authenticationState.postValue(AuthenticationState.UNAUTHENTICATED);
           }
         });

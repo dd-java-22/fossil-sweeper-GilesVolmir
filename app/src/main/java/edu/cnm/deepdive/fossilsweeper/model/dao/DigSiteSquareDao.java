@@ -21,6 +21,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteSquare;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
 
@@ -40,7 +41,15 @@ public interface DigSiteSquareDao {
    * @return List of generated primary key IDs.
    */
   @Insert
-  List<Long> insert(Collection<DigSiteSquare> digSiteSquares);
+  List<Long> insertRaw(Collection<DigSiteSquare> digSiteSquares);
+
+  default List<Long> insert(Collection<DigSiteSquare> digSiteSquares) {
+    Instant now = Instant.now();
+    digSiteSquares.forEach((square) -> square.setLastModified(now));
+    return insertRaw(digSiteSquares);
+  }
+
+
 
   /**
    * Retrieves all dig site squares for a specific grid as observable live data.
@@ -82,7 +91,12 @@ public interface DigSiteSquareDao {
    * @return Number of rows updated (should be 1).
    */
   @Update
-  int update(DigSiteSquare digSiteSquare);
+  int updateRaw(DigSiteSquare digSiteSquare);
+
+  default int update(DigSiteSquare digSiteSquare) {
+    digSiteSquare.setLastModified(Instant.now());
+    return updateRaw(digSiteSquare);
+  }
 
   /**
    * Updates multiple dig site squares in a batch operation.
@@ -91,6 +105,11 @@ public interface DigSiteSquareDao {
    * @return Number of rows updated.
    */
   @Update
-  int update(Collection<DigSiteSquare> digSiteSquares);
+  int updateRaw(Collection<DigSiteSquare> digSiteSquares);
 
+  default int update(Collection<DigSiteSquare> digSiteSquares) {
+    Instant now = Instant.now();
+    digSiteSquares.forEach((square) -> square.setLastModified(now));
+    return updateRaw(digSiteSquares);
+  }
 }

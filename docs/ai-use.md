@@ -42,3 +42,24 @@ order: 90
 
 + Had Claude write me an SQL query to get any fossils that were not assigned to a collected 
   fossil yet. it was just a left join but I forgot how they worked and it got it for me.
+
+## Milestone 3
+
++ Frequent use of IntelliJ Idea's code completion.
+
++ Gemini helped me figure out chipsGroup and custom selectable cards to use as chips.
+
++ Claude helped make that into a RadioGroup so it's now ugly and hard-coded size but actually 
+  works even though you can't tell which is selected.
+
++ Claude implemented the click listener handling in DigSiteView from a description of the kind of listener I wanted.
+
++ added colored background to RadioGroup that's not visible yet beyond the image and messed up 
+  the text. tried to add tint to the vector drawables but it's not doing anything at all. 
+
++ Claude added brush and scanner count to game page!
+
++ Claude implemented decrementing brush and scanner resources on use including not allowing 
+  scanner use if there are no scanners left.
+
++ Claude added some Javadocs and Kdocs with it's final credits! I gotta check if it really finished.

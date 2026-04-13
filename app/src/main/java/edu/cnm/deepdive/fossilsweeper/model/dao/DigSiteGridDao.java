@@ -22,6 +22,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteGrid;
+import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteGridWithSquares;
 import java.util.List;
 
 /**
@@ -58,16 +59,20 @@ public interface DigSiteGridDao {
   @Query("SELECT * FROM dig_site_grid WHERE player_id = :playerId ORDER BY start_time DESC")
   LiveData<List<DigSiteGrid>> selectByPlayerId(long playerId);
 
-//  /**
-//   * Retrieves a dig site grid with all its associated squares using a database view. This is a
-//   * transactional query that joins grid and square data.
-//   *
-//   * @param id Grid ID.
-//   * @return LiveData containing the grid with squares POJO.
-//   */
-//  @Transaction
-//  @Query("SELECT * FROM DigSiteGridWithSquares WHERE dig_site_grid_id = :id")
-//  LiveData<DigSiteGridWithSquares> selectWithSquares(long id);
+  /**
+   * Retrieves a dig site grid with all its associated squares using a database view. This is a
+   * transactional query that joins grid and square data.
+   *
+   * @param id Grid ID.
+   * @return LiveData containing the grid with squares POJO.
+   */
+  @Transaction
+  @Query("SELECT * FROM dig_site_grid WHERE dig_site_grid_id = :id")
+  LiveData<DigSiteGridWithSquares> selectWithSquares(long id);
+
+  @Transaction
+  @Query("SELECT * FROM dig_site_grid WHERE player_id = :playerId ORDER BY start_time DESC LIMIT 1")
+  LiveData<DigSiteGridWithSquares> getMostRecentDigSiteGridWithSquaresByPlayerId(long playerId);
 
   /**
    * Updates the remaining brushes count for a specific dig site grid.

@@ -61,11 +61,21 @@ public class UserProfile {
     this.id = id;
   }
 
+  /**
+   * Gets the OAuth key used for Google Sign-In authentication.
+   *
+   * @return OAuth key.
+   */
   @NonNull
   public String getOauthKey() {
     return oauthKey;
   }
 
+  /**
+   * Sets the OAuth key used for Google Sign-In authentication.
+   *
+   * @param oauthKey OAuth key.
+   */
   public void setOauthKey(@NonNull String oauthKey) {
     this.oauthKey = oauthKey;
   }

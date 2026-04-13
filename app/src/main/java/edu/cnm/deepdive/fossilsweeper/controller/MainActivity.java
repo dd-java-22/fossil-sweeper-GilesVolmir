@@ -19,6 +19,10 @@ import dagger.hilt.android.AndroidEntryPoint;
 import edu.cnm.deepdive.fossilsweeper.R;
 import edu.cnm.deepdive.fossilsweeper.databinding.ActivityMainBinding;
 
+/**
+ * Main activity for the Fossil Sweeper application. Manages the navigation host and handles
+ * edge-to-edge display with appropriate window insets.
+ */
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
     setContentView(binding.getRoot());
   }
 
+  /**
+   * Adjusts view margins to accommodate system window insets (status bar, navigation bar, etc.).
+   *
+   * @param view The view to adjust.
+   * @param insets Window insets from the system.
+   * @return WindowInsetsCompat.CONSUMED to indicate insets have been handled.
+   */
   private static @NonNull WindowInsetsCompat adjustInsets(
       @NonNull View view, @NonNull WindowInsetsCompat insets) {
     Insets bounds = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -50,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
     return NavigationUI.navigateUp(navController, barConfig);
   }
 
+  /**
+   * Configures the navigation controller and action bar behavior based on the current destination.
+   * Hides the action bar when on the login fragment.
+   */
   private void setupNavigation() {
     barConfig = new AppBarConfiguration.Builder(R.id.main_fragment).build();
     NavHostFragment host = binding.navHostFragmentContainer.getFragment();

@@ -17,6 +17,9 @@ import edu.cnm.deepdive.fossilsweeper.databinding.FragmentFossilViewDialogBindin
 @AndroidEntryPoint
 public class FossilViewDialogFragment extends DialogFragment {
 
+  /**
+   * Tag identifier for this fragment, used for logging and fragment transactions.
+   */
   public static final String TAG = "FossilViewDialogFragment";
 
   private FragmentFossilViewDialogBinding binding;

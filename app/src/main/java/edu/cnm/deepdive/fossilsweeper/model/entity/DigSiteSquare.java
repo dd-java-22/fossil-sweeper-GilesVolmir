@@ -220,6 +220,11 @@ public class DigSiteSquare {
     this.lastModified = lastModified;
   }
 
+  /**
+   * Gets the coordinate position of this square as a DigSiteCoord object.
+   *
+   * @return Coordinate object containing x and y positions.
+   */
   public DigSiteCoord getCoord() {
     return new DigSiteCoord(xCoordinate, yCoordinate);
   }

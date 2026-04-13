@@ -14,7 +14,14 @@ import java.util.concurrent.CompletableFuture
 import java.util.stream.Collectors
 import java.util.stream.IntStream
 
-
+/**
+ * Implementation of [GameplayService] that manages the Minesweeper-style fossil digging game logic.
+ * Handles dig site generation, square state management, and game tool operations.
+ *
+ * @property digSiteGridRepository Repository for managing dig site grids.
+ * @property digSiteSquareRepository Repository for managing individual squares.
+ * @property userProfileRepository Repository for managing user profiles and resources.
+ */
 class GameplayServiceImpl @Inject constructor(
     private val digSiteGridRepository: DigSiteGridRepository,
     private val digSiteSquareRepository: DigSiteSquareRepository,

@@ -9,11 +9,19 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Implementation of {@link DigSiteSquareRepository} that delegates to the corresponding DAO for
+ * database operations.
+ */
 public class DigSiteSquareRepositoryImpl implements DigSiteSquareRepository {
 
   private final DigSiteSquareDao digSiteSquareDao;
 
-
+  /**
+   * Constructs a DigSiteSquareRepositoryImpl with the specified DAO.
+   *
+   * @param digSiteSquareDao DAO for database operations.
+   */
   @Inject
   DigSiteSquareRepositoryImpl(DigSiteSquareDao digSiteSquareDao) {
     this.digSiteSquareDao = digSiteSquareDao;

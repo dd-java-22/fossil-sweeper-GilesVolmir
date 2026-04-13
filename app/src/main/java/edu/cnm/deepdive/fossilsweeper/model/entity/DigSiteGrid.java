@@ -158,18 +158,38 @@ public class DigSiteGrid {
     this.startTime = startTime;
   }
 
+  /**
+   * Gets the total number of fossils hidden in this grid.
+   *
+   * @return Total fossil count.
+   */
   public int getTotalFossils() {
     return totalFossils;
   }
 
+  /**
+   * Sets the total number of fossils hidden in this grid.
+   *
+   * @param totalFossils Total fossil count.
+   */
   public void setTotalFossils(int totalFossils) {
     this.totalFossils = totalFossils;
   }
 
+  /**
+   * Gets the number of brush items remaining for extracting fossils.
+   *
+   * @return Remaining brushes count.
+   */
   public int getRemainingBrushes() {
     return remainingBrushes;
   }
 
+  /**
+   * Sets the number of brush items remaining for extracting fossils.
+   *
+   * @param remainingBrushes Remaining brushes count.
+   */
   public void setRemainingBrushes(int remainingBrushes) {
     this.remainingBrushes = remainingBrushes;
   }

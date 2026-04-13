@@ -20,6 +20,10 @@ import edu.cnm.deepdive.fossilsweeper.model.type.DigSiteSquareState;
 import java.util.Map;
 import java.util.function.Consumer;
 
+/**
+ * Custom view for rendering the dig site game board. Displays a grid of squares with different
+ * appearances based on their state, and handles touch events for cell selection.
+ */
 public class DigSiteView extends View {
 
   private final Context context;
@@ -29,29 +33,60 @@ public class DigSiteView extends View {
   private Map<DigSiteCoord, DigSiteSquare> gridSquares;
   private Consumer<DigSiteCoord> onCellClickListener;
 
+  /**
+   * Constructs a DigSiteView with the specified context.
+   *
+   * @param context Application context.
+   */
   public DigSiteView(Context context) {
     super(context);
     this.context = context;
   }
 
+  /**
+   * Constructs a DigSiteView with the specified context and attribute set.
+   *
+   * @param context Application context.
+   * @param attrs XML attributes.
+   */
   public DigSiteView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
     this.context = context;
 
   }
 
+  /**
+   * Constructs a DigSiteView with the specified context, attributes, and default style.
+   *
+   * @param context Application context.
+   * @param attrs XML attributes.
+   * @param defStyleAttr Default style attribute.
+   */
   public DigSiteView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     this.context = context;
 
   }
 
+  /**
+   * Constructs a DigSiteView with the specified context, attributes, and default style resources.
+   *
+   * @param context Application context.
+   * @param attrs XML attributes.
+   * @param defStyleAttr Default style attribute.
+   * @param defStyleRes Default style resource.
+   */
   public DigSiteView(Context context, @Nullable AttributeSet attrs, int defStyleAttr,
       int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
     this.context = context;
   }
 
+  /**
+   * Sets the grid data to display and triggers a layout or invalidation as needed.
+   *
+   * @param gridSquares Map of coordinates to dig site squares.
+   */
   public void setGridSquares(Map<DigSiteCoord, DigSiteSquare> gridSquares) {
     this.gridSquares = gridSquares;
     int xCellsNew = gridSquares.keySet().stream().mapToInt(DigSiteCoord::x).max().orElse(0) + 1;
@@ -65,6 +100,11 @@ public class DigSiteView extends View {
     }
   }
 
+  /**
+   * Sets the listener to be called when a cell is clicked.
+   *
+   * @param listener Consumer that receives the clicked coordinate.
+   */
   public void setOnCellClickListener(Consumer<DigSiteCoord> listener) {
     this.onCellClickListener = listener;
   }
@@ -136,10 +176,23 @@ public class DigSiteView extends View {
     return super.onTouchEvent(event);
   }
 
+  /**
+   * Converts pixel coordinates to grid coordinates.
+   *
+   * @param x X pixel position.
+   * @param y Y pixel position.
+   * @return Grid coordinate.
+   */
   private DigSiteCoord pixelToGridCoordinate(int x, int y) {
     return new DigSiteCoord(x / cellDim, y / cellDim);
   }
 
+  /**
+   * Converts grid coordinates to pixel bounds for drawing.
+   *
+   * @param coord Grid coordinate.
+   * @return Rectangle bounds for the cell.
+   */
   private Rect gridCoordinateToBounds(DigSiteCoord coord) {
     return new Rect(
         coord.x() * cellDim,
@@ -148,6 +201,12 @@ public class DigSiteView extends View {
         (coord.y() + 1) * cellDim);
   }
 
+  /**
+   * Selects the appropriate drawable tile for a cell based on its state and fossil content.
+   *
+   * @param cellData Dig site square data.
+   * @return Drawable to render for this cell.
+   */
   private Drawable cellToDrawableTile(DigSiteSquare cellData) {
     DigSiteSquareState state = cellData.getState();
     return switch (state) {

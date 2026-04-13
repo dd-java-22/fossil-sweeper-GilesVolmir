@@ -8,10 +8,19 @@ import jakarta.inject.Inject;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Implementation of {@link CollectedFossilRepository} that delegates to the corresponding DAO for
+ * database operations.
+ */
 public class CollectedFossilRepositoryImpl implements CollectedFossilRepository {
 
   private final CollectedFossilDao collectedFossilDao;
 
+  /**
+   * Constructs a CollectedFossilRepositoryImpl with the specified DAO.
+   *
+   * @param collectedFossilDao DAO for database operations.
+   */
   @Inject
   CollectedFossilRepositoryImpl(CollectedFossilDao collectedFossilDao) {
     this.collectedFossilDao = collectedFossilDao;

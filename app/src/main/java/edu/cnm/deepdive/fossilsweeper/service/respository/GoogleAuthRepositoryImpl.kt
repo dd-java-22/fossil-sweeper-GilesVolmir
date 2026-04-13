@@ -21,6 +21,12 @@ import kotlinx.coroutines.future.future
 import org.json.JSONObject
 import java.util.concurrent.CompletableFuture
 
+/**
+ * Implementation of [GoogleAuthRepository] using Android Credential Manager API. Manages Google
+ * sign-in, token refresh, and sign-out operations for user authentication.
+ *
+ * @property context The application context.
+ */
 @Singleton
 class GoogleAuthRepositoryImpl @Inject constructor(
     @ApplicationContext context: Context
@@ -62,6 +68,15 @@ class GoogleAuthRepositoryImpl @Inject constructor(
 
     override fun getLastOauthKey(): String? = lastOauthKey
 
+    /**
+     * Attempts to sign in with the specified options.
+     *
+     * @param activity The activity context for the sign-in operation.
+     * @param filter Whether to filter by authorized accounts only.
+     * @param autoSelect Whether to auto-select a credential if only one is available.
+     * @return The Google ID token credential.
+     * @throws GoogleAuthRepository.SignInRequiredException if sign-in fails.
+     */
     private suspend fun attemptSignIn(
         activity: Activity,
         filter: Boolean,
@@ -92,6 +107,12 @@ class GoogleAuthRepositoryImpl @Inject constructor(
         }
     }
 
+    /**
+     * Checks if the given ID token is expired or will expire within 5 minutes.
+     *
+     * @param idToken The JWT ID token to check.
+     * @return True if expired or expiring soon, false otherwise.
+     */
     private fun isTokenExpired(idToken: String): Boolean {
         return try {
             val parts = idToken.split(".")
@@ -107,6 +128,12 @@ class GoogleAuthRepositoryImpl @Inject constructor(
         }
     }
 
+    /**
+     * Extracts the subject (user ID) from a JWT token.
+     *
+     * @param token The JWT token.
+     * @return The subject string from the token payload.
+     */
     fun extractSubject(token: String): String {
         val payload = token.split(".")[1]
         val decodedPayload = String(Base64.decode(payload, Base64.URL_SAFE or Base64.NO_WRAP))

@@ -20,6 +20,12 @@ import com.google.gson.annotations.SerializedName
 /**
  * POJO representing a paginated response from the GBIF API. Contains metadata about pagination and
  * the list of fossil results.
+ *
+ * @property offset The starting position in the result set (for pagination).
+ * @property limit The maximum number of results in this page.
+ * @property isEndOfRecords Whether this is the last page of results.
+ * @property count The total number of matching records available.
+ * @property results The list of fossil specimens in this page, or null if no results.
  */
 data class GbifPageResponse(
 

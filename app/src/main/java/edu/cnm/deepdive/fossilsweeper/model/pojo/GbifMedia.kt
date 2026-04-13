@@ -20,6 +20,10 @@ import com.google.gson.annotations.SerializedName
 /**
  * DTO representing a media object from the GBIF API response. Contains information about images
  * and other media associated with a fossil specimen.
+ *
+ * @property format The MIME type or format of the media file.
+ * @property license The license under which the media is available, or null if not specified.
+ * @property identifier The URL or identifier for accessing the media resource.
  */
 data class GbifMedia (
     @SerializedName("format")

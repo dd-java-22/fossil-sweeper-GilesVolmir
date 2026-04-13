@@ -14,6 +14,10 @@ import edu.cnm.deepdive.fossilsweeper.databinding.FragmentMainBinding;
 import edu.cnm.deepdive.fossilsweeper.viewmodel.GameplayViewModel;
 import edu.cnm.deepdive.fossilsweeper.viewmodel.LoginViewModel;
 
+/**
+ * Main menu fragment providing navigation to game play, fossil gallery, settings, and logout
+ * functionality.
+ */
 @AndroidEntryPoint
 public class MainFragment extends Fragment {
 

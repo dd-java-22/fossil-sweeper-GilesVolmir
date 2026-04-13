@@ -85,16 +85,6 @@ public class DigSiteFragment extends Fragment {
             binding.scannersCount.setText(String.valueOf(scannerCount));
           }
         });
-    gameplayViewModel.isGameOver()
-        .observe(getViewLifecycleOwner(), (isGameOver) -> {
-          if (isGameOver != null && isGameOver) {
-            binding.gameOverMessage.setVisibility(View.VISIBLE);
-            binding.digSite.setClickable(false);
-          } else {
-            binding.gameOverMessage.setVisibility(View.GONE);
-            binding.digSite.setClickable(true);
-          }
-        });
   }
 
   @Override

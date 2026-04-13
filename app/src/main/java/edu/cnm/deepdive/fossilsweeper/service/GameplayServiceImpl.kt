@@ -111,16 +111,7 @@ class GameplayServiceImpl @Inject constructor(
                 .thenCompose {
                     // Consume a brush
                     if (currentBrushes > 0) {
-                        val newBrushCount = currentBrushes - 1
-                        digSiteGridRepository.updateRemainingBrushes(gridId, newBrushCount)
-                            .thenCompose {
-                                // End game if brushes reach zero
-                                if (newBrushCount == 0) {
-                                    digSiteGridRepository.endGame(gridId)
-                                } else {
-                                    CompletableFuture.completedFuture(0)
-                                }
-                            }
+                        digSiteGridRepository.updateRemainingBrushes(gridId, currentBrushes - 1)
                     } else {
                         CompletableFuture.completedFuture(0)
                     }

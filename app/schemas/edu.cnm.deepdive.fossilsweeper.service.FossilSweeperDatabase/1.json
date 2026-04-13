@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "caecda6d01526e8ce303290d287af60d",
+    "identityHash": "0ed198eb61737cad846029b539803547",
     "entities": [
       {
         "tableName": "fossil",
@@ -183,7 +183,7 @@
       },
       {
         "tableName": "dig_site_grid",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dig_site_grid_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `player_id` INTEGER NOT NULL, `height` INTEGER NOT NULL, `width` INTEGER NOT NULL, `total_fossils` INTEGER NOT NULL, `remaining_brushes` INTEGER NOT NULL, `start_time` INTEGER NOT NULL, FOREIGN KEY(`player_id`) REFERENCES `user_profile`(`user_profile_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dig_site_grid_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `player_id` INTEGER NOT NULL, `height` INTEGER NOT NULL, `width` INTEGER NOT NULL, `total_fossils` INTEGER NOT NULL, `remaining_brushes` INTEGER NOT NULL, `start_time` INTEGER NOT NULL, `end_time` INTEGER, FOREIGN KEY(`player_id`) REFERENCES `user_profile`(`user_profile_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -226,6 +226,11 @@
             "columnName": "start_time",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "endTime",
+            "columnName": "end_time",
+            "affinity": "INTEGER"
           }
         ],
         "primaryKey": {
@@ -357,7 +362,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'caecda6d01526e8ce303290d287af60d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0ed198eb61737cad846029b539803547')"
     ]
   }
 }

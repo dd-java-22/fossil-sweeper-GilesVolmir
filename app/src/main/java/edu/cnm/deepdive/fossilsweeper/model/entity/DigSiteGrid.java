@@ -67,9 +67,6 @@ public class DigSiteGrid {
   @ColumnInfo(name = "start_time")
   private Instant startTime = Instant.now();
 
-  @ColumnInfo(name = "end_time")
-  private Instant endTime;
-
   /**
    * Gets the primary key identifier for this dig site grid.
    *
@@ -175,24 +172,6 @@ public class DigSiteGrid {
 
   public void setRemainingBrushes(int remainingBrushes) {
     this.remainingBrushes = remainingBrushes;
-  }
-
-  /**
-   * Gets the timestamp when gameplay ended on this grid.
-   *
-   * @return End time, or null if game is still in progress.
-   */
-  public Instant getEndTime() {
-    return endTime;
-  }
-
-  /**
-   * Sets the timestamp when gameplay ended on this grid.
-   *
-   * @param endTime End time.
-   */
-  public void setEndTime(Instant endTime) {
-    this.endTime = endTime;
   }
 
 }

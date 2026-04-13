@@ -37,7 +37,6 @@ public class GameplayViewModel extends ViewModel {
   private ToolType currentTool = ToolType.DIG;
   private LiveData<Integer> remainingBrushes;
   private LiveData<Integer> scannerCount;
-  private LiveData<Boolean> isGameOver;
 
   @Inject
   public GameplayViewModel(GameplayService gameplayService,
@@ -72,8 +71,6 @@ public class GameplayViewModel extends ViewModel {
     remainingBrushes = Transformations.map(digSiteGridWithSquares,
         DigSiteGridWithSquares::getRemainingBrushes);
     scannerCount = userProfileRepository.getScanners(currentUser.getId());
-    isGameOver = Transformations.map(digSiteGridWithSquares,
-        game -> game != null && game.getEndTime() != null);
   }
 
   public LiveData<DigSiteGridWithSquares> getGameLivedata() {
@@ -113,9 +110,5 @@ public class GameplayViewModel extends ViewModel {
 
   public LiveData<Integer> getScannerCount() {
     return scannerCount;
-  }
-
-  public LiveData<Boolean> isGameOver() {
-    return isGameOver;
   }
 }

@@ -31,6 +31,7 @@
     android:id="@+id/dig_site"
     android:layout_width="match_parent"
     android:layout_height="0dp"
+    android:clickable="true"
     android:layout_marginTop="@dimen/half_static_spacing"
     app:layout_constraintTop_toBottomOf="@id/dig_tool_bar_container"
     app:layout_constraintStart_toStartOf="parent"

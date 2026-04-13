@@ -52,4 +52,4 @@ order: 90
 + Claude helped make that into a RadioGroup so it's now ugly and hard-coded size but actually 
   works even though you can't tell which is selected.
 
-+ 
++ Claude implemented the click listener handling in DigSiteView from a description of the kind of listener I wanted.

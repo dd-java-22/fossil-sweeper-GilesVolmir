@@ -68,6 +68,10 @@ public interface UserProfileDao {
   @Query("SELECT * FROM user_profile WHERE oauth_key = :oauthKey")
   UserProfile selectByOauthKey(String oauthKey);
 
+
+  @Query("SELECT * FROM user_profile WHERE oauth_key = :oauthKey")
+  LiveData<UserProfile> selectLiveByOauthKey(String oauthKey);
+
   /**
    * Retrieves a single user profile by its primary key (non-LiveData version).
    *

@@ -56,3 +56,5 @@ order: 90
 
 + added colored background to RadioGroup that's not visible yet beyond the image and messed up 
   the text. tried to add tint to the vector drawables but it's not doing anything at all. 
+
++ Claude is helping me add brush and scanner count to game page but WIP...

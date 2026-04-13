@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.preference.PreferenceManager;
 import dagger.hilt.InstallIn;
@@ -69,9 +70,7 @@ public class GameplayViewModel extends ViewModel {
     }
     remainingBrushes = Transformations.map(digSiteGridWithSquares,
         DigSiteGridWithSquares::getRemainingBrushes);
-    scannerCount = Transformations.map(
-        userProfileRepository.getByOauthKey(currentUser.getOauthKey()),
-        UserProfile::getScannerItems);
+    scannerCount = userProfileRepository.getScanners(currentUser.getId());
   }
 
   public LiveData<DigSiteGridWithSquares> getGameLivedata() {

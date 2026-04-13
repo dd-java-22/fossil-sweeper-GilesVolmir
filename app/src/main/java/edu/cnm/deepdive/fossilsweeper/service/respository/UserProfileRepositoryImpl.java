@@ -32,6 +32,19 @@ public class UserProfileRepositoryImpl implements UserProfileRepository {
   }
 
   @Override
+  public LiveData<UserProfile> getLiveByOauthKey(String key) {
+    UserProfile userProfile = userProfileDao.selectByOauthKey(key);
+    if (userProfile == null) {
+      userProfile = new UserProfile();
+      userProfile.setOauthKey(key);
+      userProfile.setScannerItems(1);
+      long id = userProfileDao.insert(userProfile);
+      userProfile.setId(id);
+    }
+    return userProfileDao.selectLiveByOauthKey(key);
+  }
+
+  @Override
   public CompletableFuture<UserProfile> getByUserId(long userId) {
     return CompletableFuture.supplyAsync(() -> userProfileDao.selectByIdSync(userId));
   }

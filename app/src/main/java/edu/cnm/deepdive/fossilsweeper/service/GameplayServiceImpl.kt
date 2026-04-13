@@ -7,6 +7,7 @@ import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteCoord
 import edu.cnm.deepdive.fossilsweeper.model.type.DigSiteSquareState
 import edu.cnm.deepdive.fossilsweeper.service.respository.DigSiteGridRepository
 import edu.cnm.deepdive.fossilsweeper.service.respository.DigSiteSquareRepository
+import edu.cnm.deepdive.fossilsweeper.service.respository.UserProfileRepository
 import jakarta.inject.Inject
 import java.util.concurrent.CompletableFuture
 import java.util.stream.Collectors
@@ -15,7 +16,8 @@ import java.util.stream.IntStream
 
 class GameplayServiceImpl @Inject constructor(
     private val digSiteGridRepository: DigSiteGridRepository,
-    private val digSiteSquareRepository: DigSiteSquareRepository
+    private val digSiteSquareRepository: DigSiteSquareRepository,
+    private val userProfileRepository: UserProfileRepository
 ) : GameplayService {
 
     val TAG = GameplayServiceImpl::class.java.simpleName
@@ -89,7 +91,7 @@ class GameplayServiceImpl @Inject constructor(
             square.state = DigSiteSquareState.FENCED
             digSiteSquareRepository.update(square)
                 .exceptionally {
-                    Log.e(TAG, "Error updating DigSiteSquare", it)
+                    Log.e(TAG, "Error updating DigSiteSquare or brushes", it)
                     null
                 }
         } else if (square.state == DigSiteSquareState.FENCED) {
@@ -101,26 +103,46 @@ class GameplayServiceImpl @Inject constructor(
         }
     }
 
-    override fun extractSquare(square: DigSiteSquare) {
+    override fun extractSquare(square: DigSiteSquare, gridId: Long, currentBrushes: Int) {
         if (square.state == DigSiteSquareState.UNTOUCHED) {
             square.state = DigSiteSquareState.EXTRACTED
             digSiteSquareRepository.update(square)
+                .thenCompose {
+                    // Consume a brush
+                    if (currentBrushes > 0) {
+                        digSiteGridRepository.updateRemainingBrushes(gridId, currentBrushes - 1)
+                    } else {
+                        CompletableFuture.completedFuture(0)
+                    }
+                }
                 .exceptionally {
-                    Log.e(TAG, "Error updating DigSiteSquare", it)
+                    Log.e(TAG, "Error updating DigSiteSquare or brushes", it)
                     null
                 }
         }
     }
 
-    override fun scanSquare(boardMap: Map<DigSiteCoord, DigSiteSquare>, location: DigSiteCoord) {
+    override fun scanSquare(boardMap: Map<DigSiteCoord, DigSiteSquare>, location: DigSiteCoord, userId: Long, gridId: Long, currentBrushes: Int) {
         val square = boardMap[location] ?: return
 
         if (square.state == DigSiteSquareState.UNTOUCHED || square.state == DigSiteSquareState.FENCED) {
-            if (square.isHasFossil) {
-                extractSquare(square)
-            } else {
-                digSquare(boardMap, location)
-            }
+            // Consume a scanner
+            userProfileRepository.consumeScanners(1, userId)
+                .thenAccept { scannersConsumed ->
+                    if (scannersConsumed > 0) {
+                        if (square.isHasFossil) {
+                            extractSquare(square, gridId, currentBrushes)
+                        } else {
+                            digSquare(boardMap, location)
+                        }
+                    } else {
+                        Log.w(TAG, "No scanners available to consume")
+                    }
+                }
+                .exceptionally {
+                    Log.e(TAG, "Error consuming scanners", it)
+                    null
+                }
         }
     }
 }

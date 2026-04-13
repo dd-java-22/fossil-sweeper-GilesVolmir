@@ -90,9 +90,9 @@ public class GameplayViewModel extends ViewModel {
     }
     switch (currentTool) {
       case DIG -> gameplayService.digSquare(gridSquaresMap, coord);
-      case EXTRACT -> gameplayService.extractSquare(square);
+      case EXTRACT -> gameplayService.extractSquare(square, game.getId(), game.getRemainingBrushes());
       case FENCE -> gameplayService.toggleFenceSquare(square);
-      case SCAN -> gameplayService.scanSquare(gridSquaresMap, coord);
+      case SCAN -> gameplayService.scanSquare(gridSquaresMap, coord, currentUser.getId(), game.getId(), game.getRemainingBrushes());
     }
   }
 

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModelProvider;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -34,7 +35,8 @@ public class DigSiteFragment extends Fragment {
     binding = FragmentDigSiteBinding.inflate(inflater, container, false);
     for (ToolType tool : ToolType.values()) {
       Drawable icon = getResources().getDrawable(tool.getImageId(), null);
-      RadioButton toolButton = (RadioButton) LayoutToolItemBinding.inflate(inflater, binding.digToolBar, false).getRoot();
+      RadioButton toolButton = (RadioButton) LayoutToolItemBinding.inflate(inflater,
+          binding.digToolBar, false).getRoot();
       toolButton.setText(tool.getToolName());
       toolButton.setCompoundDrawablesRelativeWithIntrinsicBounds(null, icon, null, null);
       toolButton.setTag(tool);
@@ -59,7 +61,19 @@ public class DigSiteFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
     gameplayViewModel = new ViewModelProvider(requireActivity()).get(GameplayViewModel.class);
     digSiteGridWithSquares = gameplayViewModel.getGameLivedata();
-    // TODO: Set up ViewModel and observers
+    Transformations.distinctUntilChanged(
+        Transformations.map(
+            digSiteGridWithSquares, DigSiteGridWithSquares::getGridSquares))
+        .observe(getViewLifecycleOwner(), (gridSquares) ->
+            binding.digSite.setGridSquares(gridSquares)
+        );
+    Transformations.distinctUntilChanged(
+        Transformations.map(
+            digSiteGridWithSquares, DigSiteGridWithSquares::getRemainingBrushes))
+        .observe(getViewLifecycleOwner(), (remainingBrushes) ->
+            Log.d("DigSiteFragment", "Remaining brushes: " + remainingBrushes)
+            // TODO: 4/13/2026 actually set some view on the UI once it exists.
+        );
   }
 
   @Override

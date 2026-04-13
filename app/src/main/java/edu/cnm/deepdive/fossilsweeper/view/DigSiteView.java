@@ -12,6 +12,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import edu.cnm.deepdive.fossilsweeper.R;
 import edu.cnm.deepdive.fossilsweeper.model.entity.DigSiteSquare;
 import edu.cnm.deepdive.fossilsweeper.model.pojo.DigSiteCoord;
+import edu.cnm.deepdive.fossilsweeper.model.type.DigSiteSquareState;
 import java.util.Map;
 
 public class DigSiteView extends View {
@@ -108,8 +109,17 @@ public class DigSiteView extends View {
   }
 
   private Drawable cellToDrawableTile(DigSiteSquare cellData) {
-    Drawable standIn = AppCompatResources.getDrawable(context, R.drawable.rock);
-    return standIn;
+    DigSiteSquareState state = cellData.getState();
+    return switch (state) {
+      case UNTOUCHED -> AppCompatResources.getDrawable(context, R.drawable.rock);
+      case FENCED -> AppCompatResources.getDrawable(context, R.drawable.packed_planks);
+      case DUG -> cellData.isHasFossil()
+          ? AppCompatResources.getDrawable(context, R.drawable.powder)
+          : AppCompatResources.getDrawable(context, R.drawable.path_tile);
+      case EXTRACTED -> cellData.isHasFossil()
+          ? AppCompatResources.getDrawable(context, R.drawable.fossil)
+          : AppCompatResources.getDrawable(context, R.drawable.path_tile);
+    };
   }
 
 }

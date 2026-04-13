@@ -59,4 +59,4 @@ order: 90
 
 + Claude added brush and scanner count to game page!
 
-+ 
++ Claude implemented decrementing brush and scanner resources. [WIP]

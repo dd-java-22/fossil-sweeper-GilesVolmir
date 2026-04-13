@@ -14,6 +14,6 @@ interface GameplayService {
 
     fun extractSquare(square: DigSiteSquare, gridId: Long, currentBrushes: Int)
 
-    fun scanSquare(boardMap: Map<DigSiteCoord, DigSiteSquare>, location: DigSiteCoord, userId: Long, gridId: Long, currentBrushes: Int)
+    fun scanSquare(boardMap: Map<DigSiteCoord, DigSiteSquare>, location: DigSiteCoord, userId: Long, gridId: Long, currentBrushes: Int, currentScanners: Int)
 
 }

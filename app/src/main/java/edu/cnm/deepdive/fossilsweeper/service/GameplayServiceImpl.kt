@@ -91,7 +91,7 @@ class GameplayServiceImpl @Inject constructor(
             square.state = DigSiteSquareState.FENCED
             digSiteSquareRepository.update(square)
                 .exceptionally {
-                    Log.e(TAG, "Error updating DigSiteSquare or brushes", it)
+                    Log.e(TAG, "Error updating DigSiteSquare", it)
                     null
                 }
         } else if (square.state == DigSiteSquareState.FENCED) {
@@ -122,11 +122,16 @@ class GameplayServiceImpl @Inject constructor(
         }
     }
 
-    override fun scanSquare(boardMap: Map<DigSiteCoord, DigSiteSquare>, location: DigSiteCoord, userId: Long, gridId: Long, currentBrushes: Int) {
+    override fun scanSquare(boardMap: Map<DigSiteCoord, DigSiteSquare>, location: DigSiteCoord, userId: Long, gridId: Long, currentBrushes: Int, currentScanners: Int) {
         val square = boardMap[location] ?: return
 
+        if (currentScanners < 1) {
+            Log.w(TAG, "No scanners available")
+            return
+        }
+
         if (square.state == DigSiteSquareState.UNTOUCHED || square.state == DigSiteSquareState.FENCED) {
-            // Consume a scanner
+            // Consume a scanner and process if have enough resource.
             userProfileRepository.consumeScanners(1, userId)
                 .thenAccept { scannersConsumed ->
                     if (scannersConsumed > 0) {

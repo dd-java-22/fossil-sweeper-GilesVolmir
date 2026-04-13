@@ -88,11 +88,15 @@ public class GameplayViewModel extends ViewModel {
     if (square == null) {
       return;
     }
+    Integer currentScannerCount = scannerCount.getValue();
+    if (currentScannerCount == null) {
+      currentScannerCount = 0;
+    }
     switch (currentTool) {
       case DIG -> gameplayService.digSquare(gridSquaresMap, coord);
       case EXTRACT -> gameplayService.extractSquare(square, game.getId(), game.getRemainingBrushes());
       case FENCE -> gameplayService.toggleFenceSquare(square);
-      case SCAN -> gameplayService.scanSquare(gridSquaresMap, coord, currentUser.getId(), game.getId(), game.getRemainingBrushes());
+      case SCAN -> gameplayService.scanSquare(gridSquaresMap, coord, currentUser.getId(), game.getId(), game.getRemainingBrushes(), currentScannerCount);
     }
   }
 

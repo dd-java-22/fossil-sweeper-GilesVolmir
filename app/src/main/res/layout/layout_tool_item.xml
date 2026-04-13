@@ -9,8 +9,7 @@
   android:button="@null"
   android:gravity="center"
   android:textSize="12sp"
-  android:drawablePadding="4dp"
-  android:padding="8dp"
   tools:text="Brush"
-  tools:drawableTop="@drawable/main_logo"
-  />
+  android:drawableTop="@drawable/dig_dug"
+  >
+</RadioButton>

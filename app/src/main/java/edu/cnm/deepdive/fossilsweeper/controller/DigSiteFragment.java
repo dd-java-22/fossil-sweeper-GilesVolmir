@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import android.widget.RadioGroup;
 import com.google.android.material.card.MaterialCardView;
 import dagger.hilt.android.AndroidEntryPoint;
 import edu.cnm.deepdive.fossilsweeper.databinding.FragmentDigSiteBinding;
@@ -36,16 +37,15 @@ public class DigSiteFragment extends Fragment {
       toolView.toolImage.setImageDrawable(icon);
       toolView.toolName.setText(tool.getToolName());
       toolView.getRoot().setTag(tool);
-      toolView.getRoot().setOnClickListener((v) -> ( (MaterialCardView) v ).setChecked(true));
       binding.digToolBar.addView(toolView.getRoot());
     }
-    binding.digToolBar.setSingleSelection(true);
-    binding.digToolBar.setOnCheckedStateChangeListener(
-        (group, checkedIds) -> {
-          if (checkedIds.isEmpty()) {
+    binding.digToolBar.setOnCheckedChangeListener(
+        (group, checkedId) -> {
+          if (checkedId == -1) {
             return;
           }
-          ToolType tool = (ToolType) binding.digToolBar.findViewById(checkedIds.getFirst()).getTag();
+          View checkedView = binding.digToolBar.findViewById(checkedId);
+          ToolType tool = (ToolType) checkedView.getTag();
           gameplayViewModel.setCurrentTool(tool);
           Log.d("DigSiteFragment", "Selected tool: " + tool.getToolName());
         }

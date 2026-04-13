@@ -14,12 +14,11 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent">
 
-    <com.google.android.material.chip.ChipGroup
+    <RadioGroup
       android:id="@+id/dig_tool_bar"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      app:singleSelection="true"
-      app:selectionRequired="true"
+      android:orientation="horizontal"
       android:layout_gravity="center"
       />
 <!--      app:chipSpacingHorizontal="@dimen/dig_toolbar_spacing"-->

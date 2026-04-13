@@ -1,34 +1,55 @@
 package edu.cnm.deepdive.fossilsweeper.controller;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
+import androidx.lifecycle.ViewModelProvider;
+import com.google.android.material.card.MaterialCardView;
 import dagger.hilt.android.AndroidEntryPoint;
 import edu.cnm.deepdive.fossilsweeper.databinding.FragmentDigSiteBinding;
+import edu.cnm.deepdive.fossilsweeper.databinding.LayoutToolItemBinding;
+import edu.cnm.deepdive.fossilsweeper.viewmodel.GameplayViewModel;
+import edu.cnm.deepdive.fossilsweeper.viewmodel.ToolType;
 
 @AndroidEntryPoint
 public class DigSiteFragment extends Fragment {
 
   private FragmentDigSiteBinding binding;
+  private GameplayViewModel gameplayViewModel;
+//  private final LiveData<DigSiteGridWithSquares> digSiteGridWithSquares;
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     binding = FragmentDigSiteBinding.inflate(inflater, container, false);
-    // Set up navigation to MainFragment
-    binding.backButton.setOnClickListener(v ->
-        Navigation.findNavController(binding.getRoot())
-            .navigate(DigSiteFragmentDirections.navigateToMainFragment()));
-    // Set up test button for fossil dialog (with example fossil ID)
-    binding.testFossilDialogButton.setOnClickListener(v ->
-        Navigation.findNavController(binding.getRoot())
-            .navigate(DigSiteFragmentDirections.navigateToFossilViewDialog(1L)));
+    gameplayViewModel = new ViewModelProvider(requireActivity()).get(GameplayViewModel.class);
+    for (ToolType tool : ToolType.values()) {
+      Drawable icon = getResources().getDrawable(tool.getImageId(), null);
+      LayoutToolItemBinding toolView = LayoutToolItemBinding.inflate(inflater, binding.digToolBar, false);
+      toolView.toolImage.setImageDrawable(icon);
+      toolView.toolName.setText(tool.getToolName());
+      toolView.getRoot().setTag(tool);
+      toolView.getRoot().setOnClickListener((v) -> ( (MaterialCardView) v ).setChecked(true));
+      binding.digToolBar.addView(toolView.getRoot());
+    }
+    binding.digToolBar.setSingleSelection(true);
+    binding.digToolBar.setOnCheckedStateChangeListener(
+        (group, checkedIds) -> {
+          if (checkedIds.isEmpty()) {
+            return;
+          }
+          ToolType tool = (ToolType) binding.digToolBar.findViewById(checkedIds.getFirst()).getTag();
+          gameplayViewModel.setCurrentTool(tool);
+          Log.d("DigSiteFragment", "Selected tool: " + tool.getToolName());
+        }
+    );
     return binding.getRoot();
   }
 

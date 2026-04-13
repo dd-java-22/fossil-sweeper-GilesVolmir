@@ -18,7 +18,17 @@ public class UserProfileRepositoryImpl implements UserProfileRepository {
 
   @Override
   public CompletableFuture<UserProfile> getByOauthKey(String key) {
-    return CompletableFuture.supplyAsync(() -> userProfileDao.selectByOauthKey(key));
+    return CompletableFuture.supplyAsync(() -> {
+      UserProfile userProfile = userProfileDao.selectByOauthKey(key);
+      if (userProfile == null) {
+        userProfile = new UserProfile();
+        userProfile.setOauthKey(key);
+        userProfile.setScannerItems(1);
+        long id = userProfileDao.insert(userProfile);
+        userProfile.setId(id);
+      }
+      return userProfile;
+    });
   }
 
   @Override

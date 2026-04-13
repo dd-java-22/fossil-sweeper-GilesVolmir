@@ -13,6 +13,10 @@ public interface DigSiteGridRepository {
 
   LiveData<List<DigSiteGrid>> getAllByPlayerId(long playerId);
 
+  LiveData<DigSiteGridWithSquares> getMostRecentDigSiteGridWithSquaresByPlayerId(long playerId);
+
+  LiveData<DigSiteGridWithSquares> getDigSiteGridWithSquaresById(long id);
+
   CompletableFuture<Long> insert(DigSiteGrid digSiteGrid);
 
 //  CompletableFuture<Long> insert(DigSiteGridWithSquares digSiteGridWithSquares);

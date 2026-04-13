@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import dagger.hilt.android.AndroidEntryPoint;
 import edu.cnm.deepdive.fossilsweeper.databinding.FragmentMainBinding;
+import edu.cnm.deepdive.fossilsweeper.viewmodel.GameplayViewModel;
 import edu.cnm.deepdive.fossilsweeper.viewmodel.LoginViewModel;
 
 @AndroidEntryPoint
@@ -31,9 +32,12 @@ public class MainFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     loginViewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
-    binding.playGameButton.setOnClickListener((v) ->
-        Navigation.findNavController(binding.getRoot())
-            .navigate(MainFragmentDirections.navigateToDigSiteFragment()));
+    GameplayViewModel gameplayViewModel = new ViewModelProvider(requireActivity()).get(GameplayViewModel.class);
+    binding.playGameButton.setOnClickListener((v) -> {
+      gameplayViewModel.continueOrStartNewGame();
+      Navigation.findNavController(binding.getRoot())
+          .navigate(MainFragmentDirections.navigateToDigSiteFragment());
+    });
     binding.fossilGalleryButton.setOnClickListener((v) ->
         Navigation.findNavController(binding.getRoot())
             .navigate(MainFragmentDirections.navigateToFossilGalleryFragment()));

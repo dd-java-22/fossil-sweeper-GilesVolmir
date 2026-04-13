@@ -29,6 +29,7 @@ class GoogleAuthRepositoryImpl @Inject constructor(
     private val credentialManager = CredentialManager.create(context)
     private val clientId = context.getString(R.string.client_id)
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+    private var lastOauthKey: String? = null
 
     override fun signInQuickly(activity: Activity): CompletableFuture<GoogleIdTokenCredential> =
         scope.future {
@@ -59,6 +60,8 @@ class GoogleAuthRepositoryImpl @Inject constructor(
             null
         }
 
+    override fun getLastOauthKey(): String? = lastOauthKey
+
     private suspend fun attemptSignIn(
         activity: Activity,
         filter: Boolean,
@@ -79,6 +82,7 @@ class GoogleAuthRepositoryImpl @Inject constructor(
             ) {
                 val credential = GoogleIdTokenCredential.createFrom(result.credential.data)
                 Log.d(TAG, "token = " + credential.idToken) // FIXME: Get rid of this after it is no longer ESSENTIAL.
+                lastOauthKey = extractSubject(credential.idToken)
                 credential
             } else {
                 throw IllegalStateException("Credential is not a Google ID token credential")
@@ -101,6 +105,12 @@ class GoogleAuthRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             true
         }
+    }
+
+    fun extractSubject(token: String): String {
+        val payload = token.split(".")[1]
+        val decodedPayload = String(Base64.decode(payload, Base64.URL_SAFE or Base64.NO_WRAP))
+        return JSONObject(decodedPayload).getString("sub")
     }
 
     companion object {

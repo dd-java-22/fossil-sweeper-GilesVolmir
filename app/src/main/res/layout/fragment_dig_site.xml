@@ -21,21 +21,12 @@
       app:singleSelection="true"
       app:selectionRequired="true"
       android:layout_gravity="center"
-      app:chipSpacingHorizontal="@dimen/dig_toolbar_spacing"
-      android:padding="@dimen/half_static_spacing">
-
-      <com.google.android.material.chip.Chip
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dig"
-        app:chipIconEnabled="true"
-        app:chipIconSize="50dp"
-        app:chipIcon="@drawable/dig_dug" />
-
-    </com.google.android.material.chip.ChipGroup>
+      />
+<!--      app:chipSpacingHorizontal="@dimen/dig_toolbar_spacing"-->
+<!--      android:padding="@dimen/half_static_spacing"-->
 
   </HorizontalScrollView>
+
 
   <edu.cnm.deepdive.fossilsweeper.view.DigSiteView
     android:layout_width="match_parent"

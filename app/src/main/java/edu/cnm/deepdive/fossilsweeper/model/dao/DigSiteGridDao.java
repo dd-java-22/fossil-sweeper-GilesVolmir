@@ -70,6 +70,10 @@ public interface DigSiteGridDao {
   @Query("SELECT * FROM dig_site_grid WHERE dig_site_grid_id = :id")
   LiveData<DigSiteGridWithSquares> selectWithSquares(long id);
 
+  @Transaction
+  @Query("SELECT * FROM dig_site_grid WHERE player_id = :playerId ORDER BY start_time DESC LIMIT 1")
+  LiveData<DigSiteGridWithSquares> getMostRecentDigSiteGridWithSquaresByPlayerId(long playerId);
+
   /**
    * Updates the remaining brushes count for a specific dig site grid.
    *

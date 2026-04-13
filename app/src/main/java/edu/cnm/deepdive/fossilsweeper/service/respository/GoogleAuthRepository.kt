@@ -14,5 +14,7 @@ interface GoogleAuthRepository {
 
     fun signOut(): CompletableFuture<Void?>
 
+    fun getLastOauthKey(): String?
+
     class SignInRequiredException(message: String, cause: Throwable) : RuntimeException(message, cause)
 }

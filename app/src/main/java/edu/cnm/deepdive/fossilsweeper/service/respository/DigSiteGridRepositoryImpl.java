@@ -38,7 +38,18 @@ public class DigSiteGridRepositoryImpl implements DigSiteGridRepository {
     return CompletableFuture.supplyAsync(() -> gridDao.insert(digSiteGrid));
   }
 
-//  @Override
+  @Override
+  public LiveData<DigSiteGridWithSquares> getMostRecentDigSiteGridWithSquaresByPlayerId(
+      long playerId) {
+    return gridDao.getMostRecentDigSiteGridWithSquaresByPlayerId(playerId);
+  }
+
+  @Override
+  public LiveData<DigSiteGridWithSquares> getDigSiteGridWithSquaresById(long id) {
+    return gridDao.selectWithSquares(id);
+  }
+
+  //  @Override
 //  public CompletableFuture<Long> insert(DigSiteGridWithSquares digSiteGridWithSquares) {
 //    CompletableFuture<Long> savingGrid = CompletableFuture.supplyAsync(() -> gridDao.insert(digSiteGridWithSquares.getDigSiteSquares()));
 //    savingGrid.thenAccept(gridId -> {

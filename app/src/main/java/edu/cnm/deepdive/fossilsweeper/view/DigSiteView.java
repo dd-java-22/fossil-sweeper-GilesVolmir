@@ -17,8 +17,8 @@ import java.util.Map;
 public class DigSiteView extends View {
 
   private final Context context;
-  private int xCells;
-  private int yCells;
+  private int xCells = 1;
+  private int yCells = 1;
   private int cellDim;
   private Map<DigSiteCoord, DigSiteSquare> gridSquares;
 
@@ -47,11 +47,21 @@ public class DigSiteView extends View {
 
   public void setGridSquares(Map<DigSiteCoord, DigSiteSquare> gridSquares) {
     this.gridSquares = gridSquares;
-
+    int xCellsNew = gridSquares.keySet().stream().mapToInt(DigSiteCoord::x).max().orElse(0) + 1;
+    int yCellsNew = gridSquares.keySet().stream().mapToInt(DigSiteCoord::y).max().orElse(0) + 1;
+    if (xCellsNew != xCells || yCellsNew != yCells) {
+      xCells = xCellsNew;
+      yCells = yCellsNew;
+      requestLayout();
+    }
   }
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    if (gridSquares == null) {
+      setMeasuredDimension(0, 0);
+      return;
+    }
     int suggestedW = getSuggestedMinimumWidth();
     int suggestedH = getSuggestedMinimumHeight();
     int width = resolveSizeAndState(getPaddingLeft() + getPaddingRight() + suggestedW,
@@ -74,11 +84,13 @@ public class DigSiteView extends View {
   @Override
   protected void onDraw(@NonNull Canvas canvas) {
     super.onDraw(canvas);
-    gridSquares.forEach((key, cellData) -> {
-      Drawable tile = cellToDrawableTile(cellData);
-      tile.setBounds(gridCoordinateToBounds(key));
-      tile.draw(canvas);
-    });
+    if (gridSquares != null) {
+      gridSquares.forEach((key, cellData) -> {
+        Drawable tile = cellToDrawableTile(cellData);
+        tile.setBounds(gridCoordinateToBounds(key));
+        tile.draw(canvas);
+      });
+    }
   }
 
   private DigSiteCoord pixelToGridCoordinate(int x, int y) {

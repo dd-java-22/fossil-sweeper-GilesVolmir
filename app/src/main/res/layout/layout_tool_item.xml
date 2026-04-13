@@ -13,19 +13,23 @@
   app:cardCornerRadius="12dp"
   app:cardElevation="0dp"
   app:strokeWidth="2dp"
-  app:strokeColor="@color/tool_selector_stroke">
+  app:strokeColor="@color/tool_selector_stroke"
+  app:cardBackgroundColor="@color/tool_selector_stroke"
+  >
 
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="8dp">
+    >
+<!--    android:padding="8dp"-->
 
     <ImageView
       android:id="@+id/tool_image"
       android:layout_width="48dp"
       android:layout_height="48dp"
+      app:strokeColor="@color/tool_selector_stroke"
       tools:src="@drawable/main_logo" />
 
     <TextView

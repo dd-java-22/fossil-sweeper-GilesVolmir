@@ -59,4 +59,7 @@ order: 90
 
 + Claude added brush and scanner count to game page!
 
-+ Claude implemented decrementing brush and scanner resources. [WIP]
++ Claude implemented decrementing brush and scanner resources on use including not allowing 
+  scanner use if there are no scanners left.
+
++ Claude added some Javadocs and Kdocs with it's final credits! I gotta check if it really finished.

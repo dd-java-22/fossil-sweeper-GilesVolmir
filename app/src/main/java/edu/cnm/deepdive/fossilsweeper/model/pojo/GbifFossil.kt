@@ -23,7 +23,7 @@ import com.google.gson.annotations.SerializedName
  * temporal, and media information about a fossil occurrence.
  *
  * @property gbifId The unique GBIF identifier for this occurrence.
- * @property catalogNumber The catalog number of the specimen in the collection.
+ * @property catalogNumber The catalog number of the specimen in the parent collection.
  * @property eventDate The date when the specimen was collected or observed.
  * @property countryCode The ISO country code where the specimen was found.
  * @property country The country name where the specimen was found.

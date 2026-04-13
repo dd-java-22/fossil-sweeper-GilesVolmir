@@ -12,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 import edu.cnm.deepdive.fossilsweeper.databinding.FragmentFossilGalleryBinding;
 
 /**
+ * !!! Work in progress !!!
  * Fragment displaying a gallery of collected fossils. Allows users to browse their fossil
  * collection and view detailed information about individual specimens.
  */

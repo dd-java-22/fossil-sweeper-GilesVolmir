@@ -7,15 +7,15 @@ import edu.cnm.deepdive.fossilsweeper.R;
  * resource.
  */
 public enum ToolType {
-  /** Scan tool for revealing fossil locations without extracting them. */
+  /** Scan tool for revealing fossil locations and automatically digging or extracting them. */
   SCAN("Scan", R.drawable.radar_sweep),
   /** Extract tool for carefully removing fossils without destroying them. */
   EXTRACT("Extract", R.drawable.large_paint_brush),
-  /** Dig tool for clearing squares (may destroy fossils). */
+  /** Dig tool for clearing squares (destroys fossils). */
   DIG("Dig", R.drawable.dig_dug),
   /** Fence tool for marking suspected fossil locations. */
   FENCE("Fence", R.drawable.packed_planks),
-  /** Move tool for navigation. */
+  /** Move tool for safe navigation. */
   MOVE("Move", R.drawable.tread);
 
   private final String toolName;

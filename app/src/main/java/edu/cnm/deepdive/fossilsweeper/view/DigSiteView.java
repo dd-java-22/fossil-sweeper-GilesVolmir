@@ -2,6 +2,8 @@ package edu.cnm.deepdive.fossilsweeper.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -100,7 +102,22 @@ public class DigSiteView extends View {
         Drawable tile = cellToDrawableTile(cellData);
         tile.setBounds(gridCoordinateToBounds(key));
         tile.draw(canvas);
-
+        // Add drawing a number in the center of the square based on getMooreNeighborFossils value
+        boolean visibleNumber = cellData.getState() == DigSiteSquareState.DUG || cellData.getState() == DigSiteSquareState.EXTRACTED;
+        int mooreNeighborFossils = cellData.getMooreNeighborFossils();
+        if (mooreNeighborFossils > 0 && visibleNumber) {
+          float textCellRatio = 0.8F;
+          float centerOffset = cellDim * ( 0.5F + textCellRatio / 2.0F);
+          Paint paint = new Paint();
+          paint.setColor(Color.GREEN);
+          paint.setShadowLayer(4, 4, 4, Color.BLACK);
+          paint.setTextSize(textCellRatio * cellDim);
+          paint.setTextAlign(Paint.Align.CENTER);
+          canvas.drawText(String.valueOf(mooreNeighborFossils),
+                          key.x() * cellDim + cellDim / 2.0F,
+                          key.y() * cellDim + centerOffset,
+                          paint);
+        }
       });
     }
   }
